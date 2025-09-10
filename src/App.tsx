@@ -1,9 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import Homepage from './components/Homepage/Homepage';
 import Programmer from './components/Programmer/Programmer';
 import Musician from './components/Musician/Musician';
+import './App.css';
 
 function App() {
   return (

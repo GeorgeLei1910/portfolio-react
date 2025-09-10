@@ -1,18 +1,12 @@
-@charset "UTF-8";
-
-*{
-		font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
-}
 body{
 	align-items: center;
 }
 a{
 	text-decoration: none;
 	display: inline-block;
-	min-width: 150px;
 }
-h1{
-	font-size: 60px;
+h1 {
+	font-size: 72px;
 	text-align: center;
 	color: #B3B3B3;
 }
@@ -44,6 +38,12 @@ h1{
 	transition: transform 0.3s ease-out;
 }
 
+footer p {
+	display: block;
+	color: #FFFFFF;
+	font-size: 14px;
+	text-align: center;
+}
 
 .text{
 	grid-row: 1;
@@ -100,12 +100,7 @@ h1{
 	width: 100%;
 	margin-top: 0px;
 }
-.hero_header {
-	padding-left: 10px;
-	padding-right: 10px;
-	line-height: 22px;
-	text-align: center;
-}
+
 
 .greyscale{
 	filter: grayscale(90);

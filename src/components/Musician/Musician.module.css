@@ -1,1 +1,44 @@
-.Musician {}
+@charset "UTF-8";
+/* Body */
+a {
+	color: #8200C8;
+}
+.bio{
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 800px;
+    font-family: 'Arial', sans-serif;
+    background-color: grey;
+    color: white;
+}
+
+.thumbnail {
+	border-bottom: 4px solid #C677F1;
+}
+.gallery .thumbnail h4 {
+	color: #C677F1;
+}
+
+.resume .experience {
+	background-color: #A737BE;
+}
+.resume{
+	padding-bottom: 20px;
+}
+.gallery h1{
+	color:#B3B3B3;
+	font-size: 6px;
+}
+
+.button:hover,
+.intro {
+	background-color: #C677F1;
+}
+
+.resume .qna{
+	background-color: #48205e;
+}
+
+.intro {
+	flex-direction: row;
+}

@@ -1,1 +1,65 @@
-.Programmer {}
+@charset "UTF-8";
+/* Body */
+a {
+  color: #008800;
+}
+.thumbnail {
+  border-bottom: 4px solid #77f17d;
+}
+.gallery .thumbnail h4 {
+  color: #02b911;
+}
+.resume .experience {
+  background-color: #2e9028;
+}
+.resume {
+  padding-bottom: 20px;
+}
+.gallery h1 {
+  color: #b3b3b3;
+  font-size: 6px;
+}
+
+.button:hover,
+.intro {
+  background-color: #02b911;
+}
+.resume .qna {
+  background-color: #1c611c;
+}
+.knowledge {
+  margin: 10px 0;
+  text-align: center;
+  color: #1c611c;
+}
+
+.intro {
+  flex-direction: row-reverse;
+}
+
+.hero_header {
+  padding: 0 10px;
+  line-height: 22px;
+}
+
+footer p {
+  padding: 10px 0;
+  display: block;
+  color: #ffffff;
+}
+
+footer {
+  height: 300px;
+  background-color: #DDDDDD;
+  padding: 60px 0 0;
+}
+
+.copyright {
+  	text-align: center;
+    padding: 20px 0;
+    background-color: #717070;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-top-width: 2px;
+}

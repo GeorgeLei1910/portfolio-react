@@ -1,43 +1,21 @@
 import React, { FC } from "react";
-import "./Homepage.css";
-
-import LinkedIn from '../../img/LI-In-Bug.png';
-import GitHub from '../../img/GitHub-Mark-120px-plus.png';
-import EmailIcon from '../../img/email-icon-jpg-3.jpg';
+import styles from "./Homepage.module.css";
+import Footer from "../Footer/Footer";
 
 interface HomepageProps {}
 
-const Homepage: FC<HomepageProps> = () => (
-  <div>
-    <h1 className="text"> GEORGE LEI </h1>
-    <section className="menu">
-      <a href="/programmer" className="bigbutton green">
+const Homepage: FC<HomepageProps> = ( ) => (
+  <div className="homepage" data-testid="Homepage">
+    <h1 className={styles.text}> GEORGE LEI </h1>
+    <section className={styles.menu}>
+      <a href="/programmer" className={`${styles.bigbutton} ${styles.green}`}>
         <div> PROGRAMMER </div>
       </a>
-      <a href="/musician" className="bigbutton purple">
+      <a href="/musician" className={`${styles.bigbutton} ${styles.purple}`}>
         <div> MUSICIAN </div>
       </a>
     </section>
-    <section className="submenu">
-      <a
-        href="https://www.linkedin.com/in/george-lei-3a1328141"
-        target="_blank"
-      >
-        <div className="non-button">
-          <img className="shift greyscale" src={LinkedIn} />
-        </div>
-      </a>
-      <a href="https://github.com/GeorgeLei1910" target="_blank">
-        <div className="non-button">
-          <img className="shift togrey" src={GitHub} />
-        </div>
-      </a>
-      <a href="mailto:georgecklei@gmail.com" target="_blank">
-        <div className="non-button">
-          <img className="shift togrey" src={EmailIcon} />
-        </div>
-      </a>
-    </section>
+    <Footer />
   </div>
 );
 

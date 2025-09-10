@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
-import styles from './Musician.module.css';
+import './Musician.module.css';
 import Bio from '../Bio/Bio';
 import musicianImage from '../../img/MusicianBoi4MP.jpg';
 import type { BioProps } from '../Bio/Bio';
+import Menu from '../Menu/Menu';
+import Footer from '../Footer/Footer';
 
 interface MusicianProps {
   bio ?: BioProps;
@@ -19,8 +21,10 @@ const data: BioProps = {
 };
 
 const Musician: FC<MusicianProps> = () => (
-  <div className={styles.Musician} data-testid="Musician">
+  <div data-testid="Musician">
+    <Menu />
     <Bio {...data} />
+    <Footer />
   </div>
 );
 

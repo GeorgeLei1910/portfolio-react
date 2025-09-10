@@ -5,6 +5,8 @@ import programmerImage from '../../img/CSBoi4MP.jpg';
 
 // Import BioProps interface from the Bio component
 import type { BioProps } from '../Bio/Bio';
+import Menu from '../Menu/Menu';
+import Footer from '../Footer/Footer';
 
 interface ProgrammerProps {}
 
@@ -14,8 +16,10 @@ const data: BioProps = {
 };
 
 const Programmer: FC<ProgrammerProps> = () => (
-  <div className={styles.Programmer} data-testid="Programmer">
-    <Bio image={data.image} blurb={data.blurb} />
+  <div data-testid="Programmer">
+    <Menu />
+    <Bio {...data} />
+    <Footer />
   </div>
 );
 
