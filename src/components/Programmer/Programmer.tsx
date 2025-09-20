@@ -11,12 +11,13 @@ import Footer from '../Footer/Footer';
 interface ProgrammerProps {}
 
 const data: BioProps = {
+  className: 'programmer',
   image: programmerImage,
   blurb: "Born in Hong Kong, raised in the nearby Macau, George Lei started programming with Scratch when he was 10 and then moved onto HTML/CSS at 12. At the age of 15, he learned C++ and made a simple buzzwire game. He always has an interest in creating programs. Now, he is a graduate from the University of British Columbia Major in Computer Science and Minor in Music Technology."
 };
 
 const Programmer: FC<ProgrammerProps> = () => (
-  <div data-testid="Programmer">
+  <div data-testid="Programmer" className='programmer'>
     <Menu />
     <Bio {...data} />
     <Footer />

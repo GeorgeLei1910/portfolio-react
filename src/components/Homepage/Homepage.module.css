@@ -11,6 +11,10 @@ h1 {
 	color: #B3B3B3;
 }
 
+footer{
+	background-color: white;
+}
+
 .menu{
 	display: flex;
 	grid-template-rows: auto auto;

@@ -11,6 +11,7 @@ interface MusicianProps {
 }
 
 const data: BioProps = {
+  className: 'musician',
   image: musicianImage,
   blurb: "Born in Hong Kong, raised in the nearby Macau."
   + " George Lei has experience with many instruments."
@@ -21,7 +22,7 @@ const data: BioProps = {
 };
 
 const Musician: FC<MusicianProps> = () => (
-  <div data-testid="Musician">
+  <div data-testid="Musician" className='musician'>
     <Menu />
     <Bio {...data} />
     <Footer />

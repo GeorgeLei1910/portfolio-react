@@ -1,23 +1,23 @@
 /* Footer.module.css */
 
-img {
-    height: 100px;
-    width: auto;
-}
-section{
-    padding: 20px 0 ;
+footer {
+  padding: 20px 0;
+  background-color: #cccccc;
+  color: #333333;
+
+  section {
+    padding: 20px 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
+  }
+  img {
+    height: 100px;
+    width: auto;
+  }
 
-footer {
-    padding: 20px 0;
-    background-color: #CCCCCC;
-    color: #333333;
-}
-
-.non_button{
+  .non_button {
     height: 100px;
     width: 100px;
     margin: 0 20px;
@@ -27,17 +27,11 @@ footer {
     align-items: center;
     filter: grayscale(100%);
     transition: all 0.3s ease-out;
-}
+  }
 
-.non_button:hover {
+  .non_button:hover {
     transform: scale(1.1);
     cursor: pointer;
     filter: grayscale(0%);
+  }
 }
-
-.home { 
-    background-color: #FFFFFF;
-    color: #FFFFFF;
-}
-
-
