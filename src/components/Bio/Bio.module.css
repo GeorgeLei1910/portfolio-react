@@ -1,7 +1,7 @@
 .bio {
   margin: 0 auto;
   padding: 20px;
-  max-width: 800px;
+  max-width: 960px;
   display: flex;
   flex-direction: column;
   flex-flow: row wrap;
@@ -10,6 +10,14 @@
   font-family: "Arial", sans-serif;
   background-color: grey;
   color: white;
+
+  .programmer {
+    background-color: #008800;
+  }
+
+  .musician {
+    background-color: #8813e7;
+  }
 
   img {
     width: 200px;

@@ -5,6 +5,7 @@ import musicianImage from '../../img/MusicianBoi4MP.jpg';
 import type { BioProps } from '../Bio/Bio';
 import Menu from '../Menu/Menu';
 import Footer from '../Footer/Footer';
+import Timeline from '../Timeline/Timeline';
 
 interface MusicianProps {
   bio ?: BioProps;
@@ -22,9 +23,10 @@ const data: BioProps = {
 };
 
 const Musician: FC<MusicianProps> = () => (
-  <div data-testid="Musician" className='musician'>
+  <div data-testid="Musician">
     <Menu />
     <Bio {...data} />
+    <Timeline></Timeline>
     <Footer />
   </div>
 );

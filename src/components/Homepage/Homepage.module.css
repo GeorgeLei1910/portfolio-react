@@ -6,7 +6,7 @@ a{
 	display: inline-block;
 }
 h1 {
-	font-size: 72px;
+	font-size: clamp(3rem, 20vw, 5rem);
 	text-align: center;
 	color: #B3B3B3;
 }
@@ -33,13 +33,14 @@ footer{
 }
 
 .bigbutton{
-	width: 50%;
+	flex: 1 1 200px;
+	min-width: 200px;
 	height: 250px;
 	line-height: 250px;
-	min-width: 500px;
-	font-size: 60px;
+	font-size: clamp(36px, 10vw, 60px);
 	text-align: center;	
 	transition: transform 0.3s ease-out;
+	z-index: 99;
 }
 
 footer p {
@@ -82,16 +83,6 @@ footer p {
 	transition: all 0.4s linear;
 }
 
-.green{
-	color: #468f4e;
-	background-color:  #FFFFFF;
-}
-
-.purple{
-	color: #d29ef0;
-	background-color:  #FFFFFF;
-}
-
 .green:hover {
 	background-color: #468f4e;
 	color: #FFFFFF;
@@ -100,6 +91,20 @@ footer p {
 	background-color: #d29ef0;
 	color: #FFFFFF;
 }	
+
+.green {
+	background-color: #FFFFFF;
+	color: #468f4e;
+	transition: all 0.4s linear;
+}
+.purple {
+	background-color: #FFFFFF;
+	color: #d29ef0;
+	transition: all 0.4s linear;
+}	
+
+
+
 .column {
 	width: 100%;
 	margin-top: 0px;

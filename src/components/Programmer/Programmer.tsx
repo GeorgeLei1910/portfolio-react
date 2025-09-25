@@ -7,6 +7,7 @@ import programmerImage from '../../img/CSBoi4MP.jpg';
 import type { BioProps } from '../Bio/Bio';
 import Menu from '../Menu/Menu';
 import Footer from '../Footer/Footer';
+import Timeline from '../Timeline/Timeline';
 
 interface ProgrammerProps {}
 
@@ -17,9 +18,10 @@ const data: BioProps = {
 };
 
 const Programmer: FC<ProgrammerProps> = () => (
-  <div data-testid="Programmer" className='programmer'>
+  <div data-testid="Programmer">
     <Menu />
     <Bio {...data} />
+    <Timeline></Timeline>
     <Footer />
   </div>
 );

@@ -1,0 +1,14 @@
+.TimelineEntry {
+    width: 250px;
+
+    &:nth-child(odd) {
+    left:  calc(50% + 50px) ;
+    position: absolute;
+    }
+
+    &:nth-child(even) {
+    right: calc(50% + 50px) ;
+    position: absolute;
+    }
+
+}

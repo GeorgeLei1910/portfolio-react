@@ -1,3 +1,4 @@
+.menu{
 h1{
     font-size: 96px;
     text-align: center;
@@ -7,9 +8,15 @@ div{
     text-align: center;
     align-items: center;
 }
+a{
+    text-decoration: none;
+    display: block;
+}
+}
+
 
 menu{
-    display: flex;
+    display: flex block;
     grid-template-rows: auto auto;
     flex-flow: row wrap;
     justify-content: center;
@@ -17,13 +24,13 @@ menu{
     height: auto;
     margin: 0 auto 10px;
     padding: 0;
-}
 
-menu button{
-    width: 250px;
+    button{
+            width: 250px;
     font-size: 24px;
     border: 0;
     background-color: #B3B3B3;
     color: #FFFFFF;
     font-size: 24px;
+    }
 }
