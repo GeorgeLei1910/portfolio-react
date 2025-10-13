@@ -5,7 +5,7 @@ import Timeline from './Timeline';
 
 describe('<Timeline />', () => {
   test('it should mount', () => {
-    render(<Timeline />);
+    render(<Timeline data={[]} />);
 
     const timeline = screen.getByTestId('Timeline');
 

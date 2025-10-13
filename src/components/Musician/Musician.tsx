@@ -26,8 +26,6 @@ const Musician: FC<MusicianProps> = () => (
   <div data-testid="Musician">
     <Menu />
     <Bio {...data} />
-    <Timeline></Timeline>
-    <Footer />
   </div>
 );
 

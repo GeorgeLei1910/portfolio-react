@@ -9,6 +9,7 @@ import Menu from '../Menu/Menu';
 import Footer from '../Footer/Footer';
 import Timeline from '../Timeline/Timeline';
 
+
 interface ProgrammerProps {}
 
 const data: BioProps = {
@@ -21,8 +22,20 @@ const Programmer: FC<ProgrammerProps> = () => (
   <div data-testid="Programmer">
     <Menu />
     <Bio {...data} />
-    <Timeline></Timeline>
-    <Footer />
+    <Timeline data={[
+    {
+        "year": "2008",
+        "title": "Started Programming",
+        "description": "Started programming with Scratch.",
+        "imageUrl": "https://example.com/scratch.png",
+    },
+    {
+        "year": "2010",
+        "title": "Learned HTML/CSS",
+        "description": "Moved onto web development with HTML and CSS.",
+        "imageUrl": "https://example.com/htmlcss.png"
+    }
+]} />
   </div>
 );
 

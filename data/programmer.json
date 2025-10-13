@@ -1,0 +1,19 @@
+
+
+{
+    "timeline": [
+    {
+        "year": "2008",
+        "title": "Started Programming",
+        "description": "Started programming with Scratch.",
+        "imageUrl": "https://example.com/scratch.png"
+    },
+    {
+        "year": "2010",
+        "title": "Learned HTML/CSS",
+        "description": "Moved onto web development with HTML and CSS.",
+        "imageUrl": "https://example.com/htmlcss.png"
+    }
+]
+}
+

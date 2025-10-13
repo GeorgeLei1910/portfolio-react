@@ -1,14 +1,30 @@
-.Timeline {
-    width: 100%;
-    min-height: 100px;
-    height: auto;
-    position: relative;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-    .line {
-    height: 100%;
-    width: 10px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    }
+.timeline {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  background: #006e51;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 2px);
+}
+
+
+@media (max-width: 767.98px) {
+  .timeline::after {
+    left: 90px;
+  }
 }
