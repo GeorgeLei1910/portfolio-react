@@ -8,15 +8,15 @@
   flex-wrap: wrap;
   justify-content: center;
   font-family: "Arial", sans-serif;
-  background-color: grey;
+  background-color: var(--module-bg);
   color: white;
 
   .programmer {
-    background-color: #008800;
+    background-color: var(--module-bg);
   }
 
   .musician {
-    background-color: #8813e7;
+    background-color: var(--module-bg);
   }
 
   img {

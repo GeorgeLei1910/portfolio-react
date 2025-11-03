@@ -5,29 +5,29 @@
 }
 
 .programmer {
-	background-color: #468f4e;
+	--module-bg: #468f4e;
 
 		button {
 		background-color: #FFFFFF;
-		color: #468f4e;
+		color: var(--module-bg);
 	}
 
 	button:hover {
-		background-color: #468f4e;
+		background-color: var(--module-bg);
 		color: #FFFFFF;
 	}
 }
 
 .musician{
-	background-color: #d29ef0;
+	--module-bg: #d29ef0;
 
 	button {
 		background-color: #FFFFFF;
-		color: #d29ef0;
+		color: var(--module-bg);
 	}
 
 	button:hover {
-		background-color: #d29ef0;
+		background-color: var(--module-bg);
 		color: #FFFFFF;
 	}
 }

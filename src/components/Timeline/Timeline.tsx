@@ -10,10 +10,11 @@ interface TimelineProps {
     imageUrl: string;
     position?: 'left' | 'right';
   }[];
+  className?: string;
 }
 
-const Timeline: FC<TimelineProps> = ({ data }) => (
-  <div className={styles.timeline} data-testid="Timeline">
+const Timeline: FC<TimelineProps> = ({ data, className }) => (
+  <div className={`${styles.timeline} ${className}`} data-testid="Timeline">
     <h2>Timeline</h2>
     {data.map((entry, index) => {
       entry.position = entry.position ?? (index % 2 === 0 ? 'left' : 'right');

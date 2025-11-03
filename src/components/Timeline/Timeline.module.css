@@ -2,9 +2,11 @@
 *::before,
 *::after {
   box-sizing: border-box;
+    --darker-bg: color-mix(in srgb, var(--module-bg), black 25%);
 }
 
 .timeline {
+  align-items: center;
   position: relative;
   width: 100%;
   max-width: 960px;
@@ -12,11 +14,22 @@
   padding: 15px 0;
 }
 
+.timeline h2{
+  text-align: center;
+  width: fit-content;
+  margin-bottom: 40px; 
+  background: var(--module-bg);
+  color: white;
+  position: relative;
+  z-index: 10;
+  border-radius: 20px;
+}
+
 .timeline::after {
   content: "";
   position: absolute;
   width: 4px;
-  background: #006e51;
+  background: var(--darker-bg);
   top: 0;
   bottom: 0;
   left: calc(50% - 2px);

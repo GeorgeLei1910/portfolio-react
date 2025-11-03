@@ -1,6 +1,33 @@
-# Getting Started with Create React App
+# Portfolio React Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern portfolio website built with React, TypeScript, and PostgreSQL. Features dynamic content management through a RESTful API.
+
+## Features
+
+- 🎨 Modern React frontend with TypeScript
+- 🗄️ PostgreSQL database for content management
+- 🔌 RESTful API with Node.js/Express
+- 🐳 Docker containerization for easy deployment
+- 📱 Responsive design
+
+## Quick Start with Docker
+
+The easiest way to run the application is with Docker Compose:
+
+```bash
+docker-compose up -d
+```
+
+This will start:
+- PostgreSQL database on port 5432
+- Backend API on port 5000
+- Frontend React app on port 3000
+
+Visit [http://localhost:3000](http://localhost:3000) to see the portfolio.
+
+## Database Documentation
+
+For detailed database setup and API documentation, see [DATABASE.md](./DATABASE.md).
 
 ## Available Scripts
 

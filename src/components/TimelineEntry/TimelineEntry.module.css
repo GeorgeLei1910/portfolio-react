@@ -1,6 +1,7 @@
 .container {
   position: relative;
   color: white;
+  background-color: var(--module-bg);
   width: 50%;
   max-width: 500px;
   margin: 20px 0;
@@ -19,7 +20,7 @@
   top: calc(50% - 8px);
   right: -8px;
   background: #ffffff;
-  border: 2px solid #006e51;
+  border: 2px solid var(--darker-bg);
   border-radius: 16px;
   z-index: 1;
 }
