@@ -93,6 +93,57 @@ docker exec -it portfolio-postgres psql -U portfolio_user -d portfolio_db
 psql -h localhost -p 5432 -U portfolio_user -d portfolio_db
 ```
 
+### Access the Database with a GUI Tool
+
+You can use any PostgreSQL GUI client to connect to your database. Here are popular options:
+
+#### Connection Details
+- **Host**: `localhost`
+- **Port**: `5432`
+- **Database**: `portfolio_db`
+- **Username**: `portfolio_user`
+- **Password**: `portfolio_password`
+
+#### Recommended GUI Tools
+
+**1. pgAdmin (Free, Official PostgreSQL Tool)**
+- Download: https://www.pgadmin.org/download/
+- After installation, create a new server connection with the details above
+
+**2. DBeaver (Free, Cross-platform)**
+- Download: https://dbeaver.io/download/
+- Supports PostgreSQL and many other databases
+- Create a new PostgreSQL connection with the details above
+
+**3. TablePlus (Free tier available)**
+- Download: https://tableplus.com/
+- Modern, user-friendly interface
+- Create a new PostgreSQL connection
+
+**4. DataGrip (Paid, by JetBrains)**
+- Download: https://www.jetbrains.com/datagrip/
+- Professional IDE for databases
+- 30-day free trial available
+
+**5. Postico (Mac only, Free trial)**
+- Download: https://eggerapps.at/postico/
+- Beautiful native Mac app
+
+#### Quick Setup Example (pgAdmin)
+
+1. Open pgAdmin
+2. Right-click "Servers" → "Create" → "Server"
+3. In the "General" tab, enter a name (e.g., "Portfolio DB")
+4. In the "Connection" tab, enter:
+   - Host: `localhost`
+   - Port: `5432`
+   - Database: `portfolio_db`
+   - Username: `portfolio_user`
+   - Password: `portfolio_password`
+5. Click "Save"
+
+**Note**: Make sure your Docker container is running (`docker ps`) before connecting.
+
 ### Common Queries
 
 **View all bios:**

@@ -15,7 +15,6 @@ const Homepage: FC<HomepageProps> = ( ) => (
         <div> MUSICIAN </div>
       </a>
     </section>
-    <Footer />
   </div>
 );
 
