@@ -13,6 +13,7 @@ function App() {
         <Route path="/programmer" element={<Programmer />} />
         <Route path="/musician" element={<Musician />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
