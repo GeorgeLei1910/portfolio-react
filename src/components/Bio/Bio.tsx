@@ -8,7 +8,7 @@ export interface BioProps {
 }
 
 const Bio: FC<BioProps> = ({ image, blurb, className }) => (
-  <div className={`${styles.bio} ${className}`} data-testid="Bio">
+  <div className={`${styles.bio} ${className}`} id="profile">
     <div className="profile">
       <img src={image} alt="me" className={styles.profile} id="george" />
     </div>

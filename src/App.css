@@ -2,6 +2,7 @@
 /* Body */
 *{
 		font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+		--max-width: 960px;
 }
 
 .programmer {

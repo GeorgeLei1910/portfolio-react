@@ -5,7 +5,7 @@ import Skills from './Skills';
 
 describe('<Skills />', () => {
   test('it should mount', () => {
-    render(<Skills />);
+    render(<Skills data={[]} />);
 
     const skills = screen.getByTestId('Skills');
 

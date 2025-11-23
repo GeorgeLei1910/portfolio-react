@@ -10,6 +10,7 @@ import Footer from '../Footer/Footer';
 import Timeline from '../Timeline/Timeline';
 import { fetchBio, fetchTimeline } from '../../services/api';
 import Portfolio from '../Portfolio/Portfolio';
+import Skills from '../Skills/Skills';
 
 
 interface ProgrammerProps {}
@@ -30,6 +31,14 @@ interface PortfolioDataItem {
   url: string;
 }
 
+interface SkillsDataItem {
+  title: string;
+  experience: string;
+  imageUrl: string;
+}
+
+
+
 const Programmer: FC<ProgrammerProps> = () => {
   const [bio, setBio] = useState<BioProps>({
     className: 'programmer',
@@ -38,6 +47,7 @@ const Programmer: FC<ProgrammerProps> = () => {
   });
   const [timelineData, setTimelineData] = useState<TimelineDataItem[]>([]);
   const [portfolioData, setPortfolioData] = useState<PortfolioDataItem[]>([]);
+  const [skillsData, setSkillsData] = useState<SkillsDataItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -90,6 +100,14 @@ const Programmer: FC<ProgrammerProps> = () => {
             "url": "https://example.com/project1"
           }
         ]);
+
+        setSkillsData([
+          {
+            experience: "5 Years",
+            imageUrl: "",
+            title: "Java"
+          }
+        ])
       } finally {
         setLoading(false);
       }
@@ -106,6 +124,7 @@ const Programmer: FC<ProgrammerProps> = () => {
     <div data-testid="Programmer">
       <Menu />
       <Bio {...bio} />
+      <Skills data={skillsData} className="programmer" />
       <Timeline data={timelineData} className="programmer" />
       <Portfolio data={portfolioData} className="programmer" />
     </div>

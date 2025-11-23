@@ -10,8 +10,11 @@ const Menu: FC<MenuProps> = () => (
       <a href="#profile">
         <button className={styles.button}>Profile</button>
       </a>
-      <a href="#curvit">
-        <button className={styles.button}>Experience Q&A</button>
+      <a href="#skills">
+        <button className={styles.button}>Skills</button>
+      </a>
+      <a href="#timeline">
+        <button className={styles.button}>Timeline</button>
       </a>
       <a href="#portfolio">
         <button className={styles.button}>Portfolio</button>

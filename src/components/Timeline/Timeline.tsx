@@ -14,7 +14,7 @@ interface TimelineProps {
 }
 
 const Timeline: FC<TimelineProps> = ({ data, className }) => (
-  <div className={`${styles.timeline} ${className}`} data-testid="Timeline">
+  <div className={`${styles.timeline} ${className}`} id="timeline">
     <div className={styles.title}><h2>Timeline</h2></div>
     {data.map((entry, index) => {
       entry.position = entry.position ?? (index % 2 === 0 ? 'left' : 'right');
