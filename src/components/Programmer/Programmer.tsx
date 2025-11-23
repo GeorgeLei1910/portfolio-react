@@ -9,6 +9,7 @@ import Menu from '../Menu/Menu';
 import Footer from '../Footer/Footer';
 import Timeline from '../Timeline/Timeline';
 import { fetchBio, fetchTimeline } from '../../services/api';
+import Portfolio from '../Portfolio/Portfolio';
 
 
 interface ProgrammerProps {}
@@ -21,6 +22,14 @@ interface TimelineDataItem {
   position?: 'left' | 'right';
 }
 
+interface PortfolioDataItem {
+  date: string;
+  title: string;
+  description: string;
+  photoUrl: string;
+  url: string;
+}
+
 const Programmer: FC<ProgrammerProps> = () => {
   const [bio, setBio] = useState<BioProps>({
     className: 'programmer',
@@ -28,6 +37,7 @@ const Programmer: FC<ProgrammerProps> = () => {
     blurb: "Loading..."
   });
   const [timelineData, setTimelineData] = useState<TimelineDataItem[]>([]);
+  const [portfolioData, setPortfolioData] = useState<PortfolioDataItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -43,7 +53,6 @@ const Programmer: FC<ProgrammerProps> = () => {
           image: programmerImage,
           blurb: bioData.blurb
         });
-        
         setTimelineData(timeline.map((entry: any) => ({
           year: entry.year,
           title: entry.title,
@@ -72,6 +81,15 @@ const Programmer: FC<ProgrammerProps> = () => {
             "imageUrl": "https://example.com/htmlcss.png"
           }
         ]);
+        setPortfolioData([
+          {
+            "date": "2025-01-01",
+            "title": "Project 1",
+            "description": "Description 1",
+            "photoUrl": "https://example.com/photo1.jpg",
+            "url": "https://example.com/project1"
+          }
+        ]);
       } finally {
         setLoading(false);
       }
@@ -89,6 +107,7 @@ const Programmer: FC<ProgrammerProps> = () => {
       <Menu />
       <Bio {...bio} />
       <Timeline data={timelineData} className="programmer" />
+      <Portfolio data={portfolioData} className="programmer" />
     </div>
   );
 };

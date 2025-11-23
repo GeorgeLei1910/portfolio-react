@@ -7,7 +7,7 @@ import Menu from '../Menu/Menu';
 import Footer from '../Footer/Footer';
 import Timeline from '../Timeline/Timeline';
 import { fetchBio, fetchTimeline } from '../../services/api';
-
+import Portfolio from '../Portfolio/Portfolio';
 interface MusicianProps {
   bio?: BioProps;
 }
@@ -20,6 +20,14 @@ interface TimelineDataItem {
   position?: 'left' | 'right';
 }
 
+interface PortfolioDataItem {
+  date: string;
+  title: string;
+  description: string;
+  photoUrl: string;
+  url: string;
+}
+
 const Musician: FC<MusicianProps> = () => {
   const [bio, setBio] = useState<BioProps>({
     className: 'musician',
@@ -27,6 +35,7 @@ const Musician: FC<MusicianProps> = () => {
     blurb: "Loading..."
   });
   const [timelineData, setTimelineData] = useState<TimelineDataItem[]>([]);
+  const [portfolioData, setPortfolioData] = useState<PortfolioDataItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -76,6 +85,15 @@ const Musician: FC<MusicianProps> = () => {
             "imageUrl": "https://example.com/htmlcss.png"
           }
         ]);
+        setPortfolioData([
+          {
+            "date": "2025-01-01",
+            "title": "Project 1",
+            "description": "Description 1",
+            "photoUrl": "https://example.com/photo1.jpg",
+            "url": "https://example.com/project1"
+          }
+        ]);
       } finally {
         setLoading(false);
       }
@@ -93,6 +111,7 @@ const Musician: FC<MusicianProps> = () => {
       <Menu />
       <Bio {...bio} />
       <Timeline data={timelineData} className="musician" />
+      <Portfolio data={portfolioData} className="musician" />
     </div>
   );
 };

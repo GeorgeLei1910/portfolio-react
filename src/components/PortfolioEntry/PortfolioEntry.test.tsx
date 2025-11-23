@@ -5,7 +5,7 @@ import PortfolioEntry from './PortfolioEntry';
 
 describe('<PortfolioEntry />', () => {
   test('it should mount', () => {
-    render(<PortfolioEntry />);
+    render(<PortfolioEntry date="2025-01-01" title="Project 1" description="Description 1" photoUrl="https://example.com/photo1.jpg" url="https://example.com/project1" />);
 
     const portfolioEntry = screen.getByTestId('PortfolioEntry');
 
