@@ -1,20 +1,4 @@
 services:
-  # PostgreSQL Database
-  postgres:
-    image: postgres
-    container_name: portfolio-postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: portfolio_db
-      POSTGRES_USER: portfolio_user
-      POSTGRES_PASSWORD: portfolio_password
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./postgres_data:/var/lib/postgresql
-    networks:
-      - portfolio-network
-
   # Backend API
   backend:
     build:
@@ -26,10 +10,10 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://portfolio_user:portfolio_password@postgres:5432/portfolio_db
+      - DATABASE_URL=sqlite3:///app/sqlite3_data/portfolio_db
       - PORT=5000
-    depends_on:
-      - postgres
+    volumes:
+      - ./sqlite3_data:/app/sqlite3_data
     networks:
       - portfolio-network
 
@@ -49,9 +33,6 @@ services:
       - backend
     networks:
       - portfolio-network
-
-volumes:
-  postgres_data: 
 
 networks:
   portfolio-network:

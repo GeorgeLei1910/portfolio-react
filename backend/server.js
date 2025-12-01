@@ -1,8 +1,21 @@
+// Temporary test
+try {
+  const test = require('better-sqlite3');
+  console.log('✓ better-sqlite3 found:', test);
+} catch (err) {
+  console.error('✗ better-sqlite3 NOT FOUND:', err.message);
+  process.exit(1);
+}
+
 const express = require('express');
 const cors = require('cors');
 const pool = require('./db');
+
 const bioRoutes = require('./routes/bio');
-const timelineRoutes = require('./routes/timeline');
+const timelineRoutes = require('./routes/timeline');  
+const skillsRoutes = require('./routes/skills');
+const projectsRoutes = require('./routes/projects');
+
 const { initDatabase } = require('./scripts/init-schema');
 require('dotenv').config();
 
@@ -18,7 +31,9 @@ initDatabase();
 
 // Routes
 app.use('/api/bio', bioRoutes);
+app.use('/api/skills', skillsRoutes);
 app.use('/api/timeline', timelineRoutes);
+app.use('/api/projects', projectsRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -28,8 +43,8 @@ app.get('/api/health', (req, res) => {
 // Database connection test
 app.get('/api/test-db', async (req, res) => {
   try {
-    const result = await pool.query('SELECT NOW()');
-    res.json({ message: 'Database connected', time: result.rows[0].now });
+    const result = await pool.query('SELECT datetime(\'now\') as time');
+    res.json({ message: 'Database connected', time: result.rows[0].time });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -2,11 +2,17 @@ FROM node:18-alpine
 
 WORKDIR /app
 
+# Install build dependencies for better-sqlite3
+RUN apk add --no-cache python3 make g++ sqlite-dev
+
 # Copy package files
 COPY backend/package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install all dependencies (including dev for build tools if needed)
+RUN npm install
+
+# Rebuild better-sqlite3 to ensure it's compiled for Alpine
+RUN npm rebuild better-sqlite3 --build-from-source
 
 # Copy backend source code
 COPY backend/ .

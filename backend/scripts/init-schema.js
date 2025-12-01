@@ -7,12 +7,12 @@ async function initDatabase() {
     // Create bios table
     await pool.query(`
       CREATE TABLE IF NOT EXISTS bios (
-        id SERIAL PRIMARY KEY,
-        type VARCHAR(50) NOT NULL,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        type TEXT NOT NULL,
         blurb TEXT,
-        image_path VARCHAR(255),
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        image_path TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )
     `);
     console.log('✓ bios table ready');
@@ -20,20 +20,20 @@ async function initDatabase() {
     // Create timeline_entries table
     await pool.query(`
       CREATE TABLE IF NOT EXISTS timeline_entries (
-        id SERIAL PRIMARY KEY,
-        type VARCHAR(50) NOT NULL,
-        year VARCHAR(10) NOT NULL,
-        title VARCHAR(255) NOT NULL,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        type TEXT NOT NULL,
+        year TEXT NOT NULL,
+        title TEXT NOT NULL,
         description TEXT,
-        image_url VARCHAR(500),
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        image_url TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )
     `);
     console.log('✓ timeline_entries table ready');
 
     // Insert sample bios data
-    const bioCount = await pool.query('SELECT COUNT(*) FROM bios');
+    const bioCount = await pool.query('SELECT COUNT(*) as count FROM bios');
     if (parseInt(bioCount.rows[0].count) === 0) {
       await pool.query(`
         INSERT INTO bios (type, blurb, image_path) VALUES
@@ -44,7 +44,7 @@ async function initDatabase() {
     }
 
     // Insert sample timeline data
-    const timelineCount = await pool.query('SELECT COUNT(*) FROM timeline_entries');
+    const timelineCount = await pool.query('SELECT COUNT(*) as count FROM timeline_entries');
     if (parseInt(timelineCount.rows[0].count) === 0) {
       await pool.query(`
         INSERT INTO timeline_entries (type, year, title, description, image_url) VALUES
@@ -61,8 +61,8 @@ async function initDatabase() {
     console.log('Database initialization completed!');
   } catch (err) {
     console.error('Error initializing database:', err.message);
+    throw err;
   }
 }
 
 module.exports = { initDatabase };
-

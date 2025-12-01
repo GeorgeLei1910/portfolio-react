@@ -1,20 +1,4 @@
 services:
-  # PostgreSQL Database
-  postgres:
-    image: postgres
-    container_name: portfolio-postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: portfolio_db
-      POSTGRES_USER: portfolio_user
-      POSTGRES_PASSWORD: portfolio_password
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./postgres_data:/var/lib/postgresql
-    networks:
-      - portfolio-network
-
   # Backend API (Development mode)
   backend:
     build:
@@ -26,15 +10,14 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgresql://portfolio_user:portfolio_password@postgres:5432/portfolio_db
+      - DATABASE_URL=sqlite3:///app/sqlite3_data/portfolio_db
       - PORT=5000
-    depends_on:
-      - postgres
     networks:
       - portfolio-network
     # Mount backend source for hot reloading (if you want backend hot reloading too)
     volumes:
       - ./backend:/app
+      - ./sqlite3_data:/app/sqlite3_data
       - /app/node_modules
 
   # Frontend React App (Development mode with hot reloading)
@@ -60,9 +43,6 @@ services:
       - .:/app
       - /app/node_modules
       - /app/build
-
-volumes:
-  postgres_data: 
 
 networks:
   portfolio-network:

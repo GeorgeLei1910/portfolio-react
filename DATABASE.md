@@ -1,12 +1,12 @@
 # Database Setup Guide
 
-This portfolio application now uses PostgreSQL as the database backend. All data is dynamically loaded from the database instead of being hardcoded in the React components.
+This portfolio application now uses SQLite3 as the database backend. All data is dynamically loaded from the database instead of being hardcoded in the React components.
 
 ## Architecture
 
 - **Frontend**: React app (port 3000)
 - **Backend**: Node.js/Express API (port 5000)
-- **Database**: PostgreSQL (port 5432)
+- **Database**: SQLite3 (port 1432)
 
 ## Quick Start
 
@@ -17,7 +17,7 @@ docker-compose up -d
 ```
 
 This will start:
-- PostgreSQL database
+- SQLite3 database
 - Backend API server
 - Frontend React app
 
@@ -38,26 +38,26 @@ Stores biographical information for different sections (programmer, musician).
 
 | Column | Type | Description |
 |--------|------|-------------|
-| id | SERIAL | Primary key |
-| type | VARCHAR(50) | Section type (programmer, musician) |
+| id | INTEGER PRIMARY KEY AUTOINCREMENT | Primary key |
+| type | TEXT | Section type (programmer, musician) |
 | blurb | TEXT | Bio text |
-| image_path | VARCHAR(255) | Image filename |
-| created_at | TIMESTAMP | Creation date |
-| updated_at | TIMESTAMP | Last update date |
+| image_path | TEXT | Image filename |
+| created_at | DATETIME | Creation date |
+| updated_at | DATETIME | Last update date |
 
 ### Timeline Entries Table
 Stores timeline events.
 
 | Column | Type | Description |
 |--------|------|-------------|
-| id | SERIAL | Primary key |
-| type | VARCHAR(50) | Section type |
-| year | VARCHAR(10) | Year of event |
-| title | VARCHAR(255) | Event title |
+| id | INTEGER PRIMARY KEY AUTOINCREMENT | Primary key |
+| type | TEXT | Section type |
+| year | TEXT | Year of event |
+| title | TEXT | Event title |
 | description | TEXT | Event description |
-| image_url | VARCHAR(500) | Image URL |
-| created_at | TIMESTAMP | Creation date |
-| updated_at | TIMESTAMP | Last update date |
+| image_url | TEXT | Image URL |
+| created_at | DATETIME | Creation date |
+| updated_at | DATETIME | Last update date |
 
 ## API Endpoints
 
@@ -87,62 +87,58 @@ Stores timeline events.
 
 ```bash
 # Using Docker
-docker exec -it portfolio-postgres psql -U portfolio_user -d portfolio_db
+docker exec -it portfolio-sqlite3 sqlite3 /var/lib/sqlite3/portfolio_db
 
-# Or using local psql
-psql -h localhost -p 5432 -U portfolio_user -d portfolio_db
+# Or using local sqlite3 (if database file is accessible)
+sqlite3 ./sqlite3_data/portfolio_db
 ```
 
 ### Access the Database with a GUI Tool
 
-You can use any PostgreSQL GUI client to connect to your database. Here are popular options:
+You can use any SQLite3 GUI client to connect to your database. Here are popular options:
 
 #### Connection Details
-- **Host**: `localhost`
-- **Port**: `5432`
-- **Database**: `portfolio_db`
-- **Username**: `portfolio_user`
-- **Password**: `portfolio_password`
+- **Database File**: `./sqlite3_data/portfolio_db` (relative to project root)
+- **Or via Docker**: The database file is located at `/var/lib/sqlite3/portfolio_db` inside the container
 
 #### Recommended GUI Tools
 
-**1. pgAdmin (Free, Official PostgreSQL Tool)**
-- Download: https://www.pgadmin.org/download/
-- After installation, create a new server connection with the details above
+**1. DB Browser for SQLite (Free, Open Source)**
+- Download: https://sqlitebrowser.org/
+- Official SQLite browser tool
+- Simple and easy to use
+- Open the database file directly: `./sqlite3_data/portfolio_db`
 
 **2. DBeaver (Free, Cross-platform)**
 - Download: https://dbeaver.io/download/
-- Supports PostgreSQL and many other databases
-- Create a new PostgreSQL connection with the details above
+- Supports SQLite3 and many other databases
+- Create a new SQLite connection and point to the database file
 
 **3. TablePlus (Free tier available)**
 - Download: https://tableplus.com/
 - Modern, user-friendly interface
-- Create a new PostgreSQL connection
+- Create a new SQLite connection and select the database file
 
 **4. DataGrip (Paid, by JetBrains)**
 - Download: https://www.jetbrains.com/datagrip/
 - Professional IDE for databases
 - 30-day free trial available
+- Supports SQLite3 connections
 
-**5. Postico (Mac only, Free trial)**
-- Download: https://eggerapps.at/postico/
-- Beautiful native Mac app
+**5. SQLiteStudio (Free, Open Source)**
+- Download: https://sqlitestudio.pl/
+- Cross-platform SQLite manager
+- Open source and free
 
-#### Quick Setup Example (pgAdmin)
+#### Quick Setup Example (DB Browser for SQLite)
 
-1. Open pgAdmin
-2. Right-click "Servers" → "Create" → "Server"
-3. In the "General" tab, enter a name (e.g., "Portfolio DB")
-4. In the "Connection" tab, enter:
-   - Host: `localhost`
-   - Port: `5432`
-   - Database: `portfolio_db`
-   - Username: `portfolio_user`
-   - Password: `portfolio_password`
-5. Click "Save"
+1. Download and install DB Browser for SQLite
+2. Open the application
+3. Click "Open Database"
+4. Navigate to your project directory and select `./sqlite3_data/portfolio_db`
+5. You can now browse tables, run queries, and edit data
 
-**Note**: Make sure your Docker container is running (`docker ps`) before connecting.
+**Note**: Make sure your Docker container is running (`docker ps`) and the database file exists before connecting.
 
 ### Common Queries
 
@@ -158,14 +154,14 @@ SELECT * FROM timeline_entries ORDER BY year;
 
 **Add a new bio:**
 ```sql
-INSERT INTO bios (type, blurb, image_path) 
-VALUES ('programmer', 'Your bio text here', 'image.jpg');
+INSERT INTO bios (type, blurb, image_path, created_at, updated_at) 
+VALUES ('programmer', 'Your bio text here', 'image.jpg', datetime('now'), datetime('now'));
 ```
 
 **Add a new timeline entry:**
 ```sql
-INSERT INTO timeline_entries (type, year, title, description, image_url)
-VALUES ('programmer', '2024', 'New Achievement', 'Description here', 'https://example.com/image.png');
+INSERT INTO timeline_entries (type, year, title, description, image_url, created_at, updated_at)
+VALUES ('programmer', '2024', 'New Achievement', 'Description here', 'https://example.com/image.png', datetime('now'), datetime('now'));
 ```
 
 ### Using cURL
@@ -201,13 +197,13 @@ cd backend
 npm install
 ```
 
-### 2. Set Up PostgreSQL
+### 2. Set Up SQLite3
 
-Install PostgreSQL and create a database:
-```sql
-CREATE DATABASE portfolio_db;
-CREATE USER portfolio_user WITH PASSWORD 'portfolio_password';
-GRANT ALL PRIVILEGES ON DATABASE portfolio_db TO portfolio_user;
+SQLite3 is a file-based database, so no separate installation is needed. The database file will be created automatically when the backend starts.
+
+Ensure the `sqlite3_data` directory exists:
+```bash
+mkdir -p sqlite3_data
 ```
 
 ### 3. Configure Environment
@@ -216,7 +212,12 @@ Create `backend/.env`:
 ```
 NODE_ENV=development
 PORT=5000
-DATABASE_URL=postgresql://portfolio_user:portfolio_password@localhost:5432/portfolio_db
+DATABASE_URL=sqlite3://portfolio_db
+```
+
+Or if using a file path:
+```
+DATABASE_URL=./sqlite3_data/portfolio_db
 ```
 
 ### 4. Run Backend
@@ -248,26 +249,27 @@ npm run init-db
 ## Security Notes
 
 **For Production:**
-1. Change default database credentials
-2. Use environment variables for sensitive data
-3. Enable SSL for database connections
-4. Implement authentication for API endpoints
-5. Use HTTPS for all connections
-6. Implement rate limiting
-7. Add CORS restrictions
+1. Use environment variables for sensitive data
+2. Implement authentication for API endpoints
+3. Use HTTPS for all connections
+4. Implement rate limiting
+5. Add CORS restrictions
+6. Secure the SQLite database file with proper file permissions
+7. Consider database encryption for sensitive data
+8. Regular backups of the database file
 
 ## Troubleshooting
 
 ### Database Connection Issues
 
-**Check if PostgreSQL is running:**
+**Check if SQLite3 is running:**
 ```bash
-docker ps | grep postgres
+docker ps | grep sqlite3
 ```
 
 **View database logs:**
 ```bash
-docker logs portfolio-postgres
+docker logs portfolio-sqlite3
 ```
 
 **Reset the database:**
