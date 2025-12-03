@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Bio from './Bio';
+import BioSection from './Bio';
 
 describe('<Bio />', () => {
   test('it should mount', () => {
-    render(<Bio {...{ image: '', blurb: '' }} />);
+    render(<BioSection {...{ image: '', blurb: '' }} />);
 
     const bio = screen.getByTestId('Bio');
 

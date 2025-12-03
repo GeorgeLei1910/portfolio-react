@@ -1,19 +1,16 @@
 import React, { FC } from 'react';
 import styles from './PortfolioEntry.module.css';
+import { Project } from '../../services/api';
 
 interface PortfolioEntryProps {
-  date: string;
-  title: string;
-  description: string;
-  photoUrl: string;
-  url: string;
+  project: Project;
 }
 
-const PortfolioEntry: FC<PortfolioEntryProps> = ({ date, title, description, photoUrl, url }) => (
+const PortfolioEntry: FC<PortfolioEntryProps> = ({ project }) => (
   <div className={styles.PortfolioEntry} data-testid="PortfolioEntry">
-    <a href={url}><img src={photoUrl} alt="" height="200px" className="cards" /></a>
-    <h4>{title}</h4>
-    <p className="text_column">{description}</p>
+    <a href={project.url}><img src={project.imageUrl} alt="" height="200px" className="cards" /></a>
+    <h4>{project.title}</h4>
+    <p className="text_column">{project.description}</p>
   </div>
 );
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Timeline from './Timeline';
+import TimelineSection from './Timeline';
 
 describe('<Timeline />', () => {
   test('it should mount', () => {
-    render(<Timeline data={[]} />);
+    render(<TimelineSection data={[]} />);
 
     const timeline = screen.getByTestId('Timeline');
 

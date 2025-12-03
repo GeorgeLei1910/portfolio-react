@@ -13,7 +13,7 @@ interface TimelineProps {
   className?: string;
 }
 
-const Timeline: FC<TimelineProps> = ({ data, className }) => (
+const TimelineSection: FC<TimelineProps> = ({ data, className }) => (
   <div className={`${styles.timeline} ${className}`} id="timeline">
     <div className={styles.title}><h2>Timeline</h2></div>
     {data.map((entry, index) => {
@@ -23,4 +23,4 @@ const Timeline: FC<TimelineProps> = ({ data, className }) => (
   </div>
 );
 
-export default Timeline;
+export default TimelineSection;

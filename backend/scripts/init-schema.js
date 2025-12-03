@@ -32,6 +32,33 @@ async function initDatabase() {
     `);
     console.log('✓ timeline_entries table ready');
 
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS skills (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        type TEXT NOT NULL,
+        skill TEXT NOT NULL,
+        experience TEXT NOT NULL,
+        image_url TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log('✓ skills table ready');
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS projects (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        type TEXT NOT NULL,
+        title TEXT NOT NULL,
+        description TEXT NOT NULL,
+        image_url TEXT,
+        link TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log('✓ projects table ready');
+
     // Insert sample bios data
     const bioCount = await pool.query('SELECT COUNT(*) as count FROM bios');
     if (parseInt(bioCount.rows[0].count) === 0) {
@@ -56,6 +83,33 @@ async function initDatabase() {
         ('musician', '2015', 'Joined Bands', 'Started playing bass in various bands during middle and high school.', 'https://example.com/band.png')
       `);
       console.log('✓ Inserted sample timeline data');
+    }
+
+    const skillsCount = await pool.query('SELECT COUNT(*) as count FROM skills');
+    if (parseInt(skillsCount.rows[0].count) === 0) {
+      await pool.query(`
+        INSERT INTO skills (type, skill, experience, image_url) VALUES
+        ('programmer', 'Java', '5 Years', 'https://example.com/java.png'),
+        ('programmer', 'Python', '3 Years', 'https://example.com/python.png'),
+        ('programmer', 'JavaScript', '2 Years', 'https://example.com/javascript.png'),
+        ('musician', 'Piano', '10 Years', 'https://example.com/piano.png'),
+        ('musician', 'Bass', '8 Years', 'https://example.com/bass.png'),
+        ('musician', 'Guitar', '5 Years', 'https://example.com/guitar.png')
+      `);
+      console.log('✓ Inserted sample skills data');
+    }
+
+    const projectsCount = await pool.query('SELECT COUNT(*) as count FROM projects');
+    if (parseInt(projectsCount.rows[0].count) === 0) {
+      await pool.query(`
+        INSERT INTO projects (type, title, description, image_url, link) VALUES
+        ('programmer', 'Project 1', 'Description 1', 'https://example.com/project1.png', 'https://example.com/project1'),
+        ('programmer', 'Project 2', 'Description 2', 'https://example.com/project2.png', 'https://example.com/project2'),
+        ('programmer', 'Project 3', 'Description 3', 'https://example.com/project3.png', 'https://example.com/project3'),
+        ('musician', 'Project 4', 'Description 4', 'https://example.com/project4.png', 'https://example.com/project4'),
+        ('musician', 'Project 5', 'Description 5', 'https://example.com/project5.png', 'https://example.com/project5')
+      `);
+      console.log('✓ Inserted sample projects data');
     }
 
     console.log('Database initialization completed!');

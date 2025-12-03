@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Skills from './Skills';
+import SkillsSection from './Skills';
 
 describe('<Skills />', () => {
   test('it should mount', () => {
-    render(<Skills data={[]} />);
+    render(<SkillsSection data={[]} />);
 
     const skills = screen.getByTestId('Skills');
 

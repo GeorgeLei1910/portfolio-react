@@ -1,99 +1,49 @@
 import React, { FC, useState, useEffect } from 'react';
 import './Musician.module.css';
-import Bio from '../Bio/Bio';
+import BioSection from '../Bio/Bio';
 import musicianImage from '../../img/MusicianBoi4MP.jpg';
 import type { BioProps } from '../Bio/Bio';
 import Menu from '../Menu/Menu';
-import Footer from '../Footer/Footer';
-import Timeline from '../Timeline/Timeline';
-import { fetchBio, fetchTimeline } from '../../services/api';
-import Portfolio from '../Portfolio/Portfolio';
+import TimelineSection from '../Timeline/Timeline';
+import PortfolioSection from '../Portfolio/Portfolio';
+import { fetchSkills, fetchBio, fetchProjects, fetchTimeline} from '../../services/api';
+import type { Project, Skills, Timeline } from '../../services/api'
+import SkillsSection from '../Skills/Skills';
 interface MusicianProps {
   bio?: BioProps;
 }
 
-interface TimelineDataItem {
-  year: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  position?: 'left' | 'right';
-}
-
-interface PortfolioDataItem {
-  date: string;
-  title: string;
-  description: string;
-  photoUrl: string;
-  url: string;
-}
-
 const Musician: FC<MusicianProps> = () => {
   const [bio, setBio] = useState<BioProps>({
-    className: 'musician',
+    className: 'programmer',
     image: musicianImage,
     blurb: "Loading..."
   });
-  const [timelineData, setTimelineData] = useState<TimelineDataItem[]>([]);
-  const [portfolioData, setPortfolioData] = useState<PortfolioDataItem[]>([]);
+  const [timelineData, setTimelineData] = useState<Timeline[]>([]);
+  const [portfolioData, setPortfolioData] = useState<Project[]>([]);
+  const [skillsData, setSkillsData] = useState<Skills[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [bioData, timeline] = await Promise.all([
-          fetchBio('musician'),
-          fetchTimeline('musician')
+        const [bioData, timeline, projects, skills] = await Promise.all([
+          fetchBio('programmer'),
+          fetchTimeline('programmer'),
+          fetchProjects('programmer'),
+          fetchSkills('programmer'),
         ]);
         
         setBio({
-          className: 'musician',
+          className: 'programmer',
           image: musicianImage,
           blurb: bioData.blurb
         });
-        
-        setTimelineData(timeline.map((entry: any) => ({
-          year: entry.year,
-          title: entry.title,
-          description: entry.description,
-          imageUrl: entry.image_url
-        })));
+        setTimelineData(timeline);
+        setPortfolioData(projects);
+        setSkillsData(skills);
       } catch (error) {
         console.error('Failed to load data:', error);
-        // Fallback to hardcoded data
-        setBio({
-          className: 'musician',
-          image: musicianImage,
-          blurb: "Born in Hong Kong, raised in the nearby Macau."
-          + " George Lei has experience with many instruments."
-          + " He first played the piano when he was 5. He then picked the bass up when he was 10."
-          + " During middle school and high school, he started playing bass for different bands."
-          + " Also during that time, he has developed an interest for different instruments."
-          + " He is a graduate of the University of British Columbia in Computer Science and minored in Music Technology."
-        });
-        setTimelineData([
-          {
-            "year": "2008",
-            "title": "Started Playing Piano",
-            "description": "Started playing the piano.",
-            "imageUrl": "https://example.com/piano.png",
-          },
-          {
-            "year": "2010",
-            "title": "Learned HTML/CSS",
-            "description": "Moved onto web development with HTML and CSS.",
-            "imageUrl": "https://example.com/htmlcss.png"
-          }
-        ]);
-        setPortfolioData([
-          {
-            "date": "2025-01-01",
-            "title": "Project 1",
-            "description": "Description 1",
-            "photoUrl": "https://example.com/photo1.jpg",
-            "url": "https://example.com/project1"
-          }
-        ]);
       } finally {
         setLoading(false);
       }
@@ -101,7 +51,6 @@ const Musician: FC<MusicianProps> = () => {
 
     loadData();
   }, []);
-
   if (loading) {
     return <div data-testid="Musician">Loading...</div>;
   }
@@ -109,9 +58,10 @@ const Musician: FC<MusicianProps> = () => {
   return (
     <div data-testid="Musician">
       <Menu />
-      <Bio {...bio} />
-      <Timeline data={timelineData} className="musician" />
-      <Portfolio data={portfolioData} className="musician" />
+      <BioSection {...bio} />
+      <SkillsSection data={skillsData}></SkillsSection>
+      <TimelineSection data={timelineData} className="musician" />
+      <PortfolioSection data={portfolioData} className="musician" />
     </div>
   );
 };

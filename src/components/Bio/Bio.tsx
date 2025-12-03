@@ -7,7 +7,7 @@ export interface BioProps {
   blurb: string;
 }
 
-const Bio: FC<BioProps> = ({ image, blurb, className }) => (
+const BioSection: FC<BioProps> = ({ image, blurb, className }) => (
   <div className={`${styles.bio} ${className}`} id="profile">
     <div className="profile">
       <img src={image} alt="me" className={styles.profile} id="george" />
@@ -18,4 +18,4 @@ const Bio: FC<BioProps> = ({ image, blurb, className }) => (
   </div>
 );
 
-export default Bio;
+export default BioSection;
