@@ -1,24 +1,19 @@
 import React, { FC, useState, useEffect } from 'react';
 import './Musician.module.css';
 import BioSection from '../Bio/Bio';
-import musicianImage from '../../img/MusicianBoi4MP.jpg';
 import type { BioProps } from '../Bio/Bio';
 import Menu from '../Menu/Menu';
 import TimelineSection from '../Timeline/Timeline';
 import PortfolioSection from '../Portfolio/Portfolio';
 import { fetchSkills, fetchBio, fetchProjects, fetchTimeline} from '../../services/api';
-import type { Project, Skills, Timeline } from '../../services/api'
+import type { Bio, Project, Skills, Timeline } from '../../services/api'
 import SkillsSection from '../Skills/Skills';
 interface MusicianProps {
   bio?: BioProps;
 }
 
 const Musician: FC<MusicianProps> = () => {
-  const [bio, setBio] = useState<BioProps>({
-    className: 'programmer',
-    image: musicianImage,
-    blurb: "Loading..."
-  });
+  const [bio, setBio] = useState<Bio>();
   const [timelineData, setTimelineData] = useState<Timeline[]>([]);
   const [portfolioData, setPortfolioData] = useState<Project[]>([]);
   const [skillsData, setSkillsData] = useState<Skills[]>([]);
@@ -28,17 +23,13 @@ const Musician: FC<MusicianProps> = () => {
     const loadData = async () => {
       try {
         const [bioData, timeline, projects, skills] = await Promise.all([
-          fetchBio('programmer'),
-          fetchTimeline('programmer'),
-          fetchProjects('programmer'),
-          fetchSkills('programmer'),
+          fetchBio('musician'),
+          fetchTimeline('musician'),
+          fetchProjects('musician'),
+          fetchSkills('musician'),
         ]);
         
-        setBio({
-          className: 'programmer',
-          image: musicianImage,
-          blurb: bioData.blurb
-        });
+        setBio(bioData);
         setTimelineData(timeline);
         setPortfolioData(projects);
         setSkillsData(skills);
@@ -58,8 +49,8 @@ const Musician: FC<MusicianProps> = () => {
   return (
     <div data-testid="Musician">
       <Menu />
-      <BioSection {...bio} />
-      <SkillsSection data={skillsData}></SkillsSection>
+      <BioSection data={bio} className='musician' />
+      <SkillsSection data={skillsData} className='musician'/>
       <TimelineSection data={timelineData} className="musician" />
       <PortfolioSection data={portfolioData} className="musician" />
     </div>

@@ -1,48 +1,9 @@
+import type { Bio, Timeline, Skills, Project } from '../../shared/types';
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
-export interface Bio{
-  id: number;
-  type: string;
-  blurb: string;
-  imagePath: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface Timeline{
-  image_url: any;
-  id: number;
-  type: string;
-  year: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface Skills{
-  id: number;
-  type: string;
-  year: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface Project{
-  id: number;
-  type: string;
-  year: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  url: any;
-  createdAt: Date;
-  updatedAt: Date;
-}
+// Re-export types for convenience
+export type { Bio, Timeline, Skills, Project };
 
 // Bio API
 export const fetchBio = async (type: string): Promise<Bio> => {
@@ -62,8 +23,6 @@ export const fetchTimeline = async (type: string): Promise<Timeline[]> => {
   return response.json();
 };
 
-
-
 // Skills API
 export const fetchSkills = async (type: string): Promise<Skills[]> => {
   const response = await fetch(`${API_URL}/api/skills/${type}`);
@@ -72,8 +31,6 @@ export const fetchSkills = async (type: string): Promise<Skills[]> => {
   }
   return response.json();
 };
-
-
 
 export const fetchProjects = async (type: string): Promise<Project[]> => {
   const response = await fetch(`${API_URL}/api/projects/${type}`);

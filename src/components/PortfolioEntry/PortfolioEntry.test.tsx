@@ -2,10 +2,27 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import PortfolioEntry from './PortfolioEntry';
+import { Project } from '../../services/api';
 
 describe('<PortfolioEntry />', () => {
   test('it should mount', () => {
-    render(<PortfolioEntry date="2025-01-01" title="Project 1" description="Description 1" photoUrl="https://example.com/photo1.jpg" url="https://example.com/project1" />);
+    const mockProject : Project = {
+      id: 0,
+      type: '',
+      year: '',
+      title: '',
+      description: '',
+      imageUrl: '',
+      url: "",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    render(
+      <PortfolioEntry
+        project={mockProject}
+      />
+    );
 
     const portfolioEntry = screen.getByTestId('PortfolioEntry');
 

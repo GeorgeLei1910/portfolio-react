@@ -1,10 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import styles from './Programmer.module.css';
 import BioSection from '../Bio/Bio';
-import programmerImage from '../../img/CSBoi4MP.jpg';
-
-// Import BioProps interface from the Bio component
-import type { BioProps } from '../Bio/Bio';
 import Menu from '../Menu/Menu';
 import TimelineSection from '../Timeline/Timeline';
 import { fetchBio, fetchProjects, fetchSkills, fetchTimeline} from '../../services/api';
@@ -16,11 +12,7 @@ import SkillsSection from '../Skills/Skills';
 interface ProgrammerProps {}
 
 const Programmer: FC<ProgrammerProps> = () => {
-  const [bio, setBio] = useState<BioProps>({
-    className: 'programmer',
-    image: programmerImage,
-    blurb: "Loading..."
-  });
+  const [bio, setBio] = useState<Bio>();
   const [timelineData, setTimelineData] = useState<Timeline[]>([]);
   const [portfolioData, setPortfolioData] = useState<Project[]>([]);
   const [skillsData, setSkillsData] = useState<Skills[]>([]);
@@ -35,12 +27,8 @@ const Programmer: FC<ProgrammerProps> = () => {
           fetchProjects('programmer'),
           fetchSkills('programmer'),
         ]);
-        
-        setBio({
-          className: 'programmer',
-          image: programmerImage,
-          blurb: bioData.blurb
-        });
+
+        setBio(bioData);
         setTimelineData(timeline);
         setPortfolioData(projects);
         setSkillsData(skills);
@@ -61,7 +49,7 @@ const Programmer: FC<ProgrammerProps> = () => {
   return (
     <div data-testid="Programmer">
       <Menu />
-      <BioSection {...bio} />
+      <BioSection data={bio} className='programmer' />
       <SkillsSection data={skillsData} className="programmer" />
       <TimelineSection data={timelineData} className="programmer" />
       <PortfolioSection data={portfolioData} className="programmer" />

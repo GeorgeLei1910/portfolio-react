@@ -1,19 +1,19 @@
 import React, { FC } from "react";
 import styles from "./Bio.module.css";
+import { Bio } from "../../services/api";
 
 export interface BioProps {
-  className?: string;
-  image: string;
-  blurb: string;
+  data?: Bio;
+  className: string;
 }
 
-const BioSection: FC<BioProps> = ({ image, blurb, className }) => (
+const BioSection: FC<BioProps> = ({data, className}) => (
   <div className={`${styles.bio} ${className}`} id="profile">
     <div className="profile">
-      <img src={image} alt="me" className={styles.profile} id="george" />
+      <img src={data?.imagePath} alt="me" className={styles.profile} id="george" />
     </div>
     <div className={styles.text_column}>
-      <p>{blurb}</p>
+      <p>{data?.blurb}</p>
     </div>
   </div>
 );

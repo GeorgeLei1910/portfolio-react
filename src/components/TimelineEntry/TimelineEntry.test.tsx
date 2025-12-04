@@ -1,11 +1,24 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { Timeline } from '../../services/api';
 import TimelineEntry from './TimelineEntry';
+
+const entry: Timeline = {
+  image_url: 'https://example.com/image.jpg',
+  id: 1,
+  type: 'event',
+  year: "2022",
+  createdAt: new Date(),
+  description: 'Test description',
+  title: 'Test Title',
+  imageUrl: 'https://example.com',
+  updatedAt: new Date()
+};
 
 describe('<TimelineEntry />', () => {
   test('it should mount', () => {
-    render(<TimelineEntry year="2008" title="Started Programming" description="Started programming with Scratch." imageUrl="https://example.com/scratch.png" />);
+    render(<TimelineEntry entry={entry} position='right'/>);
 
     const timelineEntry = screen.getByTestId('TimelineEntry');
 

@@ -1,29 +1,23 @@
 import React, { FC } from "react";
 import styles from "./TimelineEntry.module.css";
+import { Timeline } from "../../services/api";
 
 interface TimelineEntryProps {
-  year: string;
-  title: string;
-  description: string;
-  imageUrl?: string;
-  position?: "left" | "right";
+  entry : Timeline;
+  position: "left" | "right";
 }
 
 const TimelineEntry: FC<TimelineEntryProps> = ({
-  year,
-  title,
-  description,
-  imageUrl,
-  position
+  entry, position
 }) => (
   <div
     className={`${styles.container} ${styles[position!]}`}
     data-testid="TimelineEntry"
   >
-    <h2 className="date">{year}</h2>
+    <h2 className="date">{entry.year}</h2>
     <div className="content">
-      <h3>{title}</h3>
-      <p>{description}</p>
+      <h3>{entry.title}</h3>
+      <p>{entry.description}</p>
     </div>
   </div>
 );
