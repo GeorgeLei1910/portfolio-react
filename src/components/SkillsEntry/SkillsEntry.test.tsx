@@ -10,11 +10,10 @@ describe('<SkillsEntry />', () => {
       <SkillsEntry
         skill={{
           id: 1,
-          title: 'JavaScript',
-          year: '2022',
+          skill: 'JavaScript',
+          experience: '2022',
           imageUrl: 'https://example.com/js.png',
           type: 'Programming',
-          description: 'A programming language.',
           createdAt: new Date(),
           updatedAt: new Date()
         }}

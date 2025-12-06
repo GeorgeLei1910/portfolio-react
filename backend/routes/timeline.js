@@ -4,6 +4,20 @@ const pool = require('../db');
 
 // GET all timeline entries
 
+function transformTimelineRow(row) {
+  return {
+    id: row.id,
+    type: row.type,
+    year: row.year,
+    title: row.title,
+    description: row.description,
+    imageUrl: row.image_url,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at
+  }
+}
+
+
 router.get('/', async (req, res) => {
   try {
     const { type } = req.query;
@@ -17,8 +31,8 @@ router.get('/', async (req, res) => {
       query += ' ORDER BY year ASC';
     }
 
-    const result = await pool.query(query, values);
-    res.json(result.rows);
+    const transformedRows = result.rows.map(transformTimelineRow);
+    res.json(transformedRows);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -8,9 +8,9 @@ interface SkillsEntryProps {
 
 const SkillsEntry: FC<SkillsEntryProps> = ({ skill }) => (
   <div className={styles.SkillsEntry} data-testid="SkillsEntry">
-    <h3>{skill.title}</h3>
-    {skill.imageUrl && <img src={skill.imageUrl} alt={skill.title} />}
-    <h3>{skill.description}</h3>
+    <h3>{skill.skill}</h3>
+    {skill.imageUrl && <img src={skill.imageUrl} alt={skill.skill} />}
+    <h3>{skill.experience}</h3>
   </div>
 );
 

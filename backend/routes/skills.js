@@ -2,7 +2,17 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 
-
+function transformSkillsRow(row) {
+  return {
+    id: row.id,
+    type: row.type,
+    skill: row.skill,
+    experience: row.experience,
+    imageUrl: `/img/${row.image_url}`, // Transform image_path to imagePath and add /img/ prefix
+    createdAt: row.created_at,
+    updatedAt: row.updated_at
+  };
+}
 
 // GET all bios
 router.get('/', async (req, res) => {
@@ -16,8 +26,8 @@ router.get('/', async (req, res) => {
       values = [type];
     }
 
-    const result = await pool.query(query, values);
-    res.json(result.rows);
+    const transformedRows = result.rows.map(transformSkillsRow);
+    res.json(transformedRows);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -2,6 +2,19 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 
+function transformProjectRow(row) {
+  return {
+    id: row.id,
+    type: row.type,
+    title: row.title,
+    description: row.description,
+    imageUrl: `/img/${row.image_url}`, // Transform image_path to imagePath and add /img/ prefix
+    url: row.link,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at
+  };
+}
+
 // GET all projects
 router.get('/', async (req, res) => {
   try {
@@ -16,8 +29,8 @@ router.get('/', async (req, res) => {
       query += ' ORDER BY title ASC';
     }
 
-    const result = await pool.query(query, values);
-    res.json(result.rows);
+    const transformedRows = result.rows.map(transformProjectRow);
+    res.json(transformedRows);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

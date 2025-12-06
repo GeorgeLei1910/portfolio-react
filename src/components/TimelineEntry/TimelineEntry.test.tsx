@@ -5,7 +5,6 @@ import { Timeline } from '../../services/api';
 import TimelineEntry from './TimelineEntry';
 
 const entry: Timeline = {
-  image_url: 'https://example.com/image.jpg',
   id: 1,
   type: 'event',
   year: "2022",

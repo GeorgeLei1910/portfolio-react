@@ -10,7 +10,6 @@ export interface Bio {
 }
 
 export interface Timeline {
-  image_url: any;
   id: number;
   type: string;
   year: string;
@@ -24,9 +23,8 @@ export interface Timeline {
 export interface Skills {
   id: number;
   type: string;
-  year: string;
-  title: string;
-  description: string;
+  skill: string;
+  experience: string;
   imageUrl: string;
   createdAt: Date;
   updatedAt: Date;
