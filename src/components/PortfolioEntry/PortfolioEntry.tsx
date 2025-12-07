@@ -8,7 +8,7 @@ interface PortfolioEntryProps {
 
 const PortfolioEntry: FC<PortfolioEntryProps> = ({ project }) => (
   <div className={styles.PortfolioEntry} data-testid="PortfolioEntry">
-    <a href={project.url}><img src={project.imageUrl} alt="" height="200px" className="cards" /></a>
+    <a href={project.url}><img src={project.imageUrl} alt="" className="cards" /></a>
     <h4>{project.title}</h4>
     <p className="text_column">{project.description}</p>
   </div>

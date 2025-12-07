@@ -9,9 +9,11 @@ import PortfolioSection from '../Portfolio/Portfolio';
 import SkillsSection from '../Skills/Skills';
 
 
-interface ProgrammerProps {}
+interface PageProps {
+  occupation : string
+}
 
-const Programmer: FC<ProgrammerProps> = () => {
+const Page: FC<PageProps> = ({ occupation }) => {
   const [bio, setBio] = useState<Bio>();
   const [timelineData, setTimelineData] = useState<Timeline[]>([]);
   const [portfolioData, setPortfolioData] = useState<Project[]>([]);
@@ -22,10 +24,10 @@ const Programmer: FC<ProgrammerProps> = () => {
     const loadData = async () => {
       try {
         const [bioData, timeline, projects, skills] = await Promise.all([
-          fetchBio('programmer'),
-          fetchTimeline('programmer'),
-          fetchProjects('programmer'),
-          fetchSkills('programmer'),
+          fetchBio(occupation),
+          fetchTimeline(occupation),
+          fetchProjects(occupation),
+          fetchSkills(occupation),
         ]);
 
         setBio(bioData);
@@ -43,18 +45,18 @@ const Programmer: FC<ProgrammerProps> = () => {
   }, []);
 
   if (loading) {
-    return <div data-testid="Programmer">Loading...</div>;
+    return <div data-testid={occupation}>Loading...</div>;
   }
 
   return (
-    <div data-testid="Programmer">
+    <div data-testid={occupation}>
       <Menu />
-      <BioSection data={bio} className='programmer' />
-      <SkillsSection data={skillsData} className="programmer" />
-      <TimelineSection data={timelineData} className="programmer" />
-      <PortfolioSection data={portfolioData} className="programmer" />
+      <BioSection data={bio} className={occupation} />
+      <SkillsSection data={skillsData} className={occupation} />
+      <TimelineSection data={timelineData} className={occupation}/>
+      <PortfolioSection data={portfolioData} className={occupation} />
     </div>
   );
 };
 
-export default Programmer;
+export default Page;

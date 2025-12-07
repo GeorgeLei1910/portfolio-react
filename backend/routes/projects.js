@@ -44,8 +44,9 @@ router.get('/:type', async (req, res) => {
       'SELECT * FROM projects WHERE type = $1 ORDER BY title ASC',
       [type]
     );
-    res.json(result.rows);
-  } catch (err) {
+    const transformedRows = result.rows.map(transformProjectRow);
+    res.json(transformedRows);
+    } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });

@@ -15,4 +15,8 @@
         z-index: 10;
         border-radius: 20px;
       }      
+
+      .container{
+        display: flex;
+      }
 }

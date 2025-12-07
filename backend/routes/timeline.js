@@ -46,8 +46,10 @@ router.get('/:type', async (req, res) => {
       'SELECT * FROM timeline_entries WHERE type = $1 ORDER BY year ASC',
       [type]
     );
-    res.json(result.rows);
-  } catch (err) {
+    const transformedRows = result.rows.map(transformTimelineRow);
+    res.json(transformedRows);
+    } catch (err) {
+    console.log(err.message)
     res.status(500).json({ error: err.message });
   }
 });

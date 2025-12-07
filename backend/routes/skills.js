@@ -43,8 +43,9 @@ router.get('/:type', async (req, res) => {
       return res.status(404).json({ error: 'Skills not found' });
     }
     
-    res.json(result.rows);
-  } catch (err) {
+    const transformedRows = result.rows.map(transformSkillsRow);
+    res.json(transformedRows);
+    } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });

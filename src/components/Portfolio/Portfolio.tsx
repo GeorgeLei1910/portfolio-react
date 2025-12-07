@@ -11,9 +11,11 @@ interface PortfolioProps {
 const PortfolioSection: FC<PortfolioProps> = ({ data, className }) => (
   <div className={`${styles.Portfolio} ${className}`} id="portfolio">
     <h2>Projects I am proud of</h2>
+    <div className={styles.container}>
     {data.map((entry) => (
       <PortfolioEntry key={entry.id} project={entry} />
     ))}
+     </div>
   </div>
 );
 

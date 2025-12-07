@@ -11,9 +11,11 @@ type SkillsProps = {
 const SkillsSection: FC<SkillsProps> = ({ data , className }) => (
   <div className={`${styles.Skills} ${className ?? ''}`} id="skills">
     <div className={styles.title}><h2>Skills</h2></div>
+    <div className={styles.container}>
     {data.map((entry) => (
       <SkillsEntry skill={entry} />
     ))}
+    </div>
   </div>
 );
 

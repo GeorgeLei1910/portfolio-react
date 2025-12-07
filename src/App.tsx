@@ -1,7 +1,6 @@
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import Homepage from './components/Homepage/Homepage';
-import Programmer from './components/Programmer/Programmer';
-import Musician from './components/Musician/Musician';
+import Page from './components/Page/Page';
 import Footer from './components/Footer/Footer';
 import './App.css';
 
@@ -10,8 +9,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/programmer" element={<Programmer />} />
-        <Route path="/musician" element={<Musician />} />
+        <Route path="/programmer" element={<Page occupation='programmer'/>} />
+        <Route path="/musician" element={<Page occupation='musician'/>} />
       </Routes>
       <Footer />
     </BrowserRouter>

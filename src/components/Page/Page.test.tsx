@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Programmer from './Programmer';
+import Page from './Page';
 
 describe('<Programmer />', () => {
   test('it should mount', () => {
-    render(<Programmer />);
+    render(<Page occupation='programmer'/>);
 
-    const programmer = screen.getByTestId('Programmer');
+    const programmer = screen.getByTestId('programmer');
 
     expect(programmer).toBeInTheDocument();
   });

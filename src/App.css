@@ -3,7 +3,11 @@
 *{
 		font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
 		--max-width: 960px;
+		--portfolio-width : 300px
+
 }
+
+
 
 .programmer {
 	--module-bg: #468f4e;
