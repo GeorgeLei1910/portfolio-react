@@ -24,7 +24,7 @@ export const fetchTimeline = async (type: string): Promise<Timeline[]> => {
 };
 
 // Skills API
-export const fetchSkills = async (type: string): Promise<Skills[]> => {
+export const fetchSkills = async (type: string): Promise<Map<string, Skills[]>> => {
   const response = await fetch(`${API_URL}/api/skills/${type}`);
   if (!response.ok) {
     throw new Error('Failed to fetch skills');

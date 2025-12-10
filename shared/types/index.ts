@@ -24,8 +24,9 @@ export interface Skills {
   id: number;
   type: string;
   skill: string;
-  experience: string;
+  experience: number;
   imageUrl: string;
+  subtype: string;
   createdAt: Date;
   updatedAt: Date;
 }

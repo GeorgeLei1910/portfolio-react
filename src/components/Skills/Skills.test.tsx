@@ -5,7 +5,7 @@ import SkillsSection from './Skills';
 
 describe('<Skills />', () => {
   test('it should mount', () => {
-    render(<SkillsSection data={[]} />);
+    render(<SkillsSection data={new Map()} />);
 
     const skills = screen.getByTestId('Skills');
 

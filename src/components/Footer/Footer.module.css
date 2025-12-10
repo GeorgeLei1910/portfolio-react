@@ -2,7 +2,7 @@
 
 footer {
   padding: 20px 0;
-  background-color: #cccccc;
+  background-color: var(--module-text-color);
   color: #333333;
 
   section {

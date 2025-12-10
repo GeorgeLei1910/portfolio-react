@@ -17,7 +17,7 @@ const Page: FC<PageProps> = ({ occupation }) => {
   const [bio, setBio] = useState<Bio>();
   const [timelineData, setTimelineData] = useState<Timeline[]>([]);
   const [portfolioData, setPortfolioData] = useState<Project[]>([]);
-  const [skillsData, setSkillsData] = useState<Skills[]>([]);
+  const [skillsData, setSkillsData] = useState<Map<string, Skills[]>>(new Map());
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

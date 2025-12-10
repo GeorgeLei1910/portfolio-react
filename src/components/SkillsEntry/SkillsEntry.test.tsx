@@ -11,9 +11,10 @@ describe('<SkillsEntry />', () => {
         skill={{
           id: 1,
           skill: 'JavaScript',
-          experience: '2022',
+          experience: 2022,
           imageUrl: 'https://example.com/js.png',
           type: 'Programming',
+          subtype: 'Languages',
           createdAt: new Date(),
           updatedAt: new Date()
         }}
