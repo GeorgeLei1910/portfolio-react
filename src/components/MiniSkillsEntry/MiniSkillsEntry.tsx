@@ -9,7 +9,7 @@ interface MiniSkillsEntryProps {
 const MiniSkillsEntry: FC<MiniSkillsEntryProps> = ( {items} ) => (
   <div className={styles.MiniSkillsEntry}>
     {items.map((item) => (
-      <div className={styles.skillsItem} data-testid="MiniSkillsEntry">
+      <div className={styles.skillItem} data-testid="MiniSkillsEntry">
         <img
           src={item.imageUrl}
           alt={item.type}
