@@ -39,4 +39,9 @@
   .text_column {
     width: 260px;
   }
+
+  .skills{
+    margin: 10px 0;
+    padding: 0 20px;
+  }
 }

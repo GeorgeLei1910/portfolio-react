@@ -16,6 +16,7 @@ export interface Timeline {
   title: string;
   description: string;
   imageUrl: string;
+  skills: MiniSkills[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -39,6 +40,13 @@ export interface Project {
   description: string;
   imageUrl: string;
   url: any;
+  skills: MiniSkills[];
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface MiniSkills{
+  id: number;
+  type: string;
+  imageUrl: string;
 }

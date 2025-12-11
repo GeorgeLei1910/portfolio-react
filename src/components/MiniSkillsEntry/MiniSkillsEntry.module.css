@@ -1,0 +1,59 @@
+.MiniSkillsEntry {
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+      
+      .skillItem {
+        position: relative;
+        display: inline-block;
+        margin: 0 10px;
+      }
+      
+      .skillImage {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      
+      .skillImage:hover {
+        transform: scale(1.05);
+      }
+      
+      .skillTooltip {
+        visibility: hidden;
+        opacity: 0;
+        background-color: var(--darker-bg, #333);
+        color: white;
+        text-align: center;
+        padding: 8px 12px;
+        border-radius: 6px;
+        position: absolute;
+        z-index: 1000;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        font-size: 14px;
+        transition: opacity 0.3s, visibility 0.3s;
+        pointer-events: none;
+      }
+      
+      .skillTooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: var(--darker-bg, #333) transparent transparent transparent;
+      }
+      
+      .skillItem:hover .skillTooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+}

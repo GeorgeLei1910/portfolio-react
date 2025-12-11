@@ -11,6 +11,7 @@ const pf : Project = {
   title: '',
   description: '',
   imageUrl: '',
+  skills: [],
   url: undefined,
   createdAt: undefined,
   updatedAt: undefined
@@ -21,7 +22,6 @@ describe('<Portfolio />', () => {
     render(<PortfolioSection data={[pf]} className="programmer" />);
 
     const portfolio = screen.getByTestId('Portfolio');
-
     expect(portfolio).toBeInTheDocument();
   });
 });

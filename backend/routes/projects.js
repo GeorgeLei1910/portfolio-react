@@ -15,6 +15,16 @@ function transformProjectRow(row) {
   };
 }
 
+function transformMiniSkillsRow(row) {
+  return {
+    projectId: row.project_id,
+    skillsId: row.skills_id,
+    type: row.skill,
+    imageUrl: `/img/${row.image_url}`
+  }
+}
+
+
 // GET all projects
 router.get('/', async (req, res) => {
   try {
@@ -45,6 +55,30 @@ router.get('/:type', async (req, res) => {
       [type]
     );
     const transformedRows = result.rows.map(transformProjectRow);
+
+    const skillsResult = await pool.query(
+      "SELECT p.id as \"project_id\", s.id as \"skills_id\", s.skill, s.image_url "
+      + "FROM skills s, projects p, project_skills ps "
+      + "WHERE p.type = $1 and ps.skills_id = s.id and p.id = ps.project_id",
+        [type]
+      );
+  
+      const transformedSkillsRows = skillsResult.rows.map(transformMiniSkillsRow)
+  
+      const skillsMap = new Map();
+  
+      transformedSkillsRows.forEach((item) => {    
+        if (!skillsMap.has(item.projectId)) {
+          skillsMap.set(item.projectId, [])
+        }
+        skillsMap.get(item.projectId).push(item);
+      });
+  
+      transformedRows.forEach((v) => {
+          v.skills = skillsMap.get(v.id);
+      })
+  
+
     res.json(transformedRows);
     } catch (err) {
     res.status(500).json({ error: err.message });

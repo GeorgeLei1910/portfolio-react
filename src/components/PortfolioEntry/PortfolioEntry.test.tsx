@@ -13,6 +13,7 @@ describe('<PortfolioEntry />', () => {
       title: '',
       description: '',
       imageUrl: '',
+      skills: [],
       url: "",
       createdAt: new Date(),
       updatedAt: new Date(),

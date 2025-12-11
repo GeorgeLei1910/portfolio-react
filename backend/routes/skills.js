@@ -14,27 +14,7 @@ function transformSkillsRow(row) {
     experience: row.experience_year
   };
 }
-
-// GET all bios
-router.get('/', async (req, res) => {
-  try {
-    const { type } = req.query;
-    let query = 'SELECT * FROM skills';
-    let values = [];
-
-    if (type) {
-      query += ' WHERE type = $1';
-      values = [type];
-    }
-
-    const transformedRows = result.rows.map(transformSkillsRow);
-    res.json(transformedRows);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// GET bio by type
+// GET Skill by type
 router.get('/:type', async (req, res) => {
   try {
     const { type } = req.params;

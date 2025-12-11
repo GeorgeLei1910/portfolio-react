@@ -9,6 +9,7 @@ const entry: Timeline = {
   type: 'event',
   year: "2022",
   createdAt: new Date(),
+  skills: [],
   description: 'Test description',
   title: 'Test Title',
   imageUrl: 'https://example.com',
