@@ -24,7 +24,7 @@
       }
       
       .category {
-        width: 100%;
+        width: calc(var(--max-width) / 2);
         margin-bottom: 2rem;
       }
 

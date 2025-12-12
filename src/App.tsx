@@ -2,6 +2,7 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import Homepage from './components/Homepage/Homepage';
 import Page from './components/Page/Page';
 import Footer from './components/Footer/Footer';
+import ReturnToTop from './components/ReturnToTop/ReturnToTop';
 import './App.css';
 
 function App() {
