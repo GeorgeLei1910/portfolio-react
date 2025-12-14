@@ -1,8 +1,8 @@
-const pool = require('../db');
+const pool = require("../db");
 
 async function initDatabase() {
   try {
-    console.log('Initializing database schema...');
+    console.log("Initializing database schema...");
 
     // Create bios table
     await pool.query(`
@@ -13,9 +13,19 @@ async function initDatabase() {
         image_path TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-      )
+      );
     `);
-    console.log('✓ bios table ready');
+    console.log("✓ bios table ready");
+
+    await pool.query(`
+      CREATE TABLE project_skills (
+            project_id INT,
+            skills_id INT,
+        UNIQUE(project_id, skills_id) ON CONFLICT ROLLBACK
+      );
+    `);
+
+    console.log("✓ project_skills table ready");
 
     // Create timeline_entries table
     await pool.query(`
@@ -30,20 +40,21 @@ async function initDatabase() {
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )
     `);
-    console.log('✓ timeline_entries table ready');
+    console.log("✓ timeline_entries table ready");
 
     await pool.query(`
       CREATE TABLE IF NOT EXISTS skills (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        type TEXT NOT NULL,
+        "type" TEXT NOT NULL,
         skill TEXT NOT NULL,
-        experience TEXT NOT NULL,
         image_url TEXT,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        created_at DATETIME DEFAULT (CURRENT_TIMESTAMP),
+        updated_at DATETIME DEFAULT (CURRENT_TIMESTAMP),
+        subtype TEXT, 
+        experience_year INTEGER
       )
     `);
-    console.log('✓ skills table ready');
+    console.log("✓ skills table ready");
 
     await pool.query(`
       CREATE TABLE IF NOT EXISTS projects (
@@ -55,23 +66,34 @@ async function initDatabase() {
         link TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-      )
+      );
     `);
-    console.log('✓ projects table ready');
+    console.log("✓ projects table ready");
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS timeline_skills (
+          timeline_id INT,
+          skills_id INT,
+          UNIQUE(timeline_id, skills_id) ON CONFLICT ROLLBACK
+      );
+    `);
+    console.log("✓ timeline_skills ready");
 
     // Insert sample bios data
-    const bioCount = await pool.query('SELECT COUNT(*) as count FROM bios');
+    const bioCount = await pool.query("SELECT COUNT(*) as count FROM bios");
     if (parseInt(bioCount.rows[0].count) === 0) {
       await pool.query(`
         INSERT INTO bios (type, blurb, image_path) VALUES
         ('programmer', 'Born in Hong Kong, raised in the nearby Macau, George Lei started programming with Scratch when he was 10 and then moved onto HTML/CSS at 12. At the age of 15, he learned C++ and made a simple buzzwire game. He always has an interest in creating programs. Now, he is a graduate from the University of British Columbia Major in Computer Science and Minor in Music Technology.', 'CSBoi4MP.jpg'),
         ('musician', 'Born in Hong Kong, raised in the nearby Macau. George Lei has experience with many instruments. He first played the piano when he was 5. He then picked the bass up when he was 10. During middle school and high school, he started playing bass for different bands. Also during that time, he has developed an interest for different instruments. He is a graduate of the University of British Columbia in Computer Science and minored in Music Technology.', 'MusicianBoi4MP.jpg')
       `);
-      console.log('✓ Inserted sample bios data');
+      console.log("✓ Inserted sample bios data");
     }
 
     // Insert sample timeline data
-    const timelineCount = await pool.query('SELECT COUNT(*) as count FROM timeline_entries');
+    const timelineCount = await pool.query(
+      "SELECT COUNT(*) as count FROM timeline_entries"
+    );
     if (parseInt(timelineCount.rows[0].count) === 0) {
       await pool.query(`
         INSERT INTO timeline_entries (type, year, title, description, image_url) VALUES
@@ -82,10 +104,12 @@ async function initDatabase() {
         ('musician', '2010', 'Picked Up Bass', 'Began playing bass guitar.', 'https://example.com/bass.png'),
         ('musician', '2015', 'Joined Bands', 'Started playing bass in various bands during middle and high school.', 'https://example.com/band.png')
       `);
-      console.log('✓ Inserted sample timeline data');
+      console.log("✓ Inserted sample timeline data");
     }
 
-    const skillsCount = await pool.query('SELECT COUNT(*) as count FROM skills');
+    const skillsCount = await pool.query(
+      "SELECT COUNT(*) as count FROM skills"
+    );
     if (parseInt(skillsCount.rows[0].count) === 0) {
       await pool.query(`
         INSERT INTO skills (type, skill, experience, image_url) VALUES
@@ -96,10 +120,12 @@ async function initDatabase() {
         ('musician', 'Bass', '8 Years', 'https://example.com/bass.png'),
         ('musician', 'Guitar', '5 Years', 'https://example.com/guitar.png')
       `);
-      console.log('✓ Inserted sample skills data');
+      console.log("✓ Inserted sample skills data");
     }
 
-    const projectsCount = await pool.query('SELECT COUNT(*) as count FROM projects');
+    const projectsCount = await pool.query(
+      "SELECT COUNT(*) as count FROM projects"
+    );
     if (parseInt(projectsCount.rows[0].count) === 0) {
       await pool.query(`
         INSERT INTO projects (type, title, description, image_url, link) VALUES
@@ -109,12 +135,12 @@ async function initDatabase() {
         ('musician', 'Project 4', 'Description 4', 'https://example.com/project4.png', 'https://example.com/project4'),
         ('musician', 'Project 5', 'Description 5', 'https://example.com/project5.png', 'https://example.com/project5')
       `);
-      console.log('✓ Inserted sample projects data');
+      console.log("✓ Inserted sample projects data");
     }
 
-    console.log('Database initialization completed!');
+    console.log("Database initialization completed!");
   } catch (err) {
-    console.error('Error initializing database:', err.message);
+    console.error("Error initializing database:", err.message);
     throw err;
   }
 }

@@ -33,10 +33,9 @@ const ReturnToTop: FC<ReturnToTopProps> = ({type}) => {
         <button
           className={`${styles.returnToTop} ${type}`}
           onClick={scrollToTop}
-          name='Return to Top'
           aria-label="Return to top"
         >
-          ↑
+          <img src='/img/up-svgrepo-com.svg'/>
         </button>
       )}
     </>
