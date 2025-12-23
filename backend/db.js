@@ -27,8 +27,21 @@ if (dbDir !== '.' && !fs.existsSync(dbDir)) {
   fs.mkdirSync(dbDir, { recursive: true });
 }
 
+// Check if database file exists before creating connection
+const dbExists = fs.existsSync(dbPath);
+if (!dbExists) {
+  console.log('Database file does not exist. Creating new database:', dbPath);
+}
+
 // Create database connection (better-sqlite3 is synchronous)
+// This will create the database file if it doesn't exist
 const db = new Database(dbPath);
+
+if (!dbExists) {
+  console.log('✓ Database file created successfully');
+} else {
+  console.log('✓ Database file already exists');
+}
 
 // Enable foreign keys
 db.pragma('foreign_keys = ON');

@@ -18,7 +18,7 @@ async function initDatabase() {
     console.log("✓ bios table ready");
 
     await pool.query(`
-      CREATE TABLE project_skills (
+      CREATE TABLE IF NOT EXISTS project_skills (
             project_id INT,
             skills_id INT,
         UNIQUE(project_id, skills_id) ON CONFLICT ROLLBACK
