@@ -1,5 +1,14 @@
 # Development Dockerfile for React application with hot reloading
-FROM node:20-alpine
+FROM node:18-slim
+
+# Install build dependencies for better-sqlite3
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    sqlite3 \
+    libsqlite3-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
