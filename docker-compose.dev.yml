@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend
+    user: root
+    privileged: true
     ports:
       - "5000:5000"
     container_name: portfolio-backend
@@ -25,6 +27,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    user: root
+    privileged: true
     ports:
       - "3000:3000"
     container_name: portfolio-react-app-dev
