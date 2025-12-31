@@ -6,7 +6,7 @@ services:
     user: root
     privileged: true
     ports:
-      - "3000:80"  # Only expose frontend port (backend not exposed)
+      - "80:80"  # Only expose frontend port (backend not exposed)
     container_name: portfolio-app
     restart: unless-stopped
     environment:
