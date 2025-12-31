@@ -17,7 +17,6 @@ const skillsRoutes = require('./routes/skills');
 const projectsRoutes = require('./routes/projects');
 
 const { initDatabase } = require('./scripts/init-schema');
-const { time } = require('console');
 require('dotenv').config();
 
 const app = express();

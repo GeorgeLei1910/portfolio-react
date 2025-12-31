@@ -29,7 +29,7 @@ async function initDatabase() {
 
     // Create timeline_entries table
     await pool.query(`
-      CREATE TABLE IF NOT EXISTS timeline_entries (
+      CREATE TABLE IF NOT EXISTS timeline (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         type TEXT NOT NULL,
         year TEXT NOT NULL,
@@ -89,8 +89,6 @@ async function initDatabase() {
       `);
       console.log("✓ Inserted sample bios data");
     }
-
-
 
     console.log("Database initialization completed!");
   } catch (err) {

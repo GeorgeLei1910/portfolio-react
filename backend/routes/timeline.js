@@ -24,7 +24,7 @@ function transformMiniSkillsRow(row) {
 
 const getTimeline = async (type) => {
     const result = await pool.query(
-      'SELECT * FROM timeline_entries WHERE type = $1 ORDER BY year ASC',
+      'SELECT * FROM timeline WHERE type = $1 ORDER BY year ASC',
       [type]
     );
 
@@ -32,7 +32,7 @@ const getTimeline = async (type) => {
 
     const skillsResult = await pool.query(
     "SELECT te.id as \"timeline_id\", s.id as \"skills_id\", s.skill, s.image_url "
-    + "FROM skills s, timeline_entries te, timeline_skills ts "
+    + "FROM skills s, timeline te, timeline_skills ts "
     + "WHERE te.type = $1 and ts.skills_id = s.id and te.id = ts.timeline_id ORDER BY year ASC",
       [type]
     );
