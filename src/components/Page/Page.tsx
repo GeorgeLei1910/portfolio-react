@@ -2,11 +2,12 @@ import React, { FC, useState, useEffect } from 'react';
 import BioSection from '../Bio/Bio';
 import Menu from '../Menu/Menu';
 import TimelineSection from '../Timeline/Timeline';
-import { fetchBio, fetchProjects, fetchSkills, fetchTimeline} from '../../services/api';
+import { fetchData } from '../../services/api';
 import type {Bio, Project, Skills, Timeline} from '../../services/api';
 import PortfolioSection from '../Portfolio/Portfolio';
 import SkillsSection from '../Skills/Skills';
 import ReturnToTop from '../ReturnToTop/ReturnToTop';
+import { OccupationData } from '@shared/types';
 
 
 interface PageProps {
@@ -23,24 +24,17 @@ const Page: FC<PageProps> = ({ occupation }) => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [bioData, timeline, projects, skills] = await Promise.all([
-          fetchBio(occupation),
-          fetchTimeline(occupation),
-          fetchProjects(occupation),
-          fetchSkills(occupation),
-        ]);
-
-        setBio(bioData);
-        setTimelineData(timeline);
-        setPortfolioData(projects);
-        setSkillsData(skills);
+        const data: OccupationData = await fetchData(occupation);
+        setBio(data.bio);
+        setTimelineData(data.timeline);
+        setPortfolioData(data.projects);
+        setSkillsData(data.skills);
       } catch (error) {
         console.error('Failed to load data:', error);
       } finally {
         setLoading(false);
       }
     };
-
     loadData();
   }, []);
 

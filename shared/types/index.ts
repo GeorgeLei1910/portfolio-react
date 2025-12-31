@@ -50,3 +50,10 @@ export interface MiniSkills{
   type: string;
   imageUrl: string;
 }
+
+export interface OccupationData{
+  bio: Bio;
+  timeline: Timeline[];
+  skills: Map<string, Skills[]>;
+  projects: Project[];
+}

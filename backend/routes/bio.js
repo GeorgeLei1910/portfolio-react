@@ -1,5 +1,3 @@
-const express = require('express');
-const router = express.Router();
 const pool = require('../db');
 
 function transformBioRow(row) {
@@ -12,41 +10,16 @@ function transformBioRow(row) {
     updatedAt: row.updated_at
   };
 }
-// GET all bios
-router.get('/', async (req, res) => {
-  try {
-    const { type } = req.query;
-    let query = 'SELECT * FROM bios';
-    let values = [];
 
-    if (type) {
-      query += ' WHERE type = $1';
-      values = [type];
-    }
-
-    const transformedRows = result.rows.map(transformBioRow);
-    res.json(transformedRows);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// GET bio by type
-router.get('/:type', async (req, res) => {
-  try {
-    const { type } = req.params;
+const getBio = async (type) => {
     const result = await pool.query('SELECT * FROM bios WHERE type = $1', [type]);
     
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Bio not found' });
+      throw new Error('Bio not found');
     }
     
     const transformedRow = transformBioRow(result.rows[0]);
-    res.json(transformedRow);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+    return transformedRow;
+}
 
-module.exports = router;
-
+module.exports = { getBio };

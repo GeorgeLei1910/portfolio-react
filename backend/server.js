@@ -17,6 +17,7 @@ const skillsRoutes = require('./routes/skills');
 const projectsRoutes = require('./routes/projects');
 
 const { initDatabase } = require('./scripts/init-schema');
+const { time } = require('console');
 require('dotenv').config();
 
 const app = express();
@@ -29,11 +30,26 @@ app.use(express.json());
 // Initialize database schema on startup
 initDatabase();
 
-// Routes
-app.use('/api/bio', bioRoutes);
-app.use('/api/skills', skillsRoutes);
-app.use('/api/timeline', timelineRoutes);
-app.use('/api/projects', projectsRoutes);
+app.get('/api/:type', async (req, res) => {
+  try{
+    const { type } = req.params;
+    const [bio, projects, skills, timeline] = await Promise.all([
+      bioRoutes.getBio(type),
+      projectsRoutes.getProjects(type),
+      skillsRoutes.getSkills(type),
+      timelineRoutes.getTimeline(type)
+    ]);
+    res.json({
+      bio,
+      projects,
+      skills,
+      timeline
+    });
+  }catch(err){
+    console.error('Error fetching data:', err);
+    res.status(500).json({error: err.message});
+  }
+})
 
 // Health check
 app.get('/api/health', (req, res) => {
