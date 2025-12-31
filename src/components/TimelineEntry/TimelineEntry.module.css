@@ -3,16 +3,33 @@
   color: white;
   background-color: var(--module-bg);
   width: 50%;
-  max-width: 500px;
   margin: 20px 0;
   padding: 15px 30px;
 }
 
 .container.right {
   left: 50%;
+  padding-left: 50px; 
 }
 
-.container::after {
+.dotImage {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: calc(50% - 40px);
+  right: -8px;
+  background: #ffffff;
+  border: 2px solid var(--darker-bg);
+  border-radius: 40px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container::after{
   content: "";
   position: absolute;
   width: 16px;
@@ -23,6 +40,20 @@
   border: 2px solid var(--darker-bg);
   border-radius: 16px;
   z-index: 1;
+}
+
+.dotImage img{
+  width: 80%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.container.left .dotImage {
+  right: -40px;
+}
+
+.container.right .dotImage {
+  left: -40px;
 }
 
 .container.right::after {
@@ -39,8 +70,10 @@
   z-index: 1;
 }
 
-
-
+.container.right::before {
+  left: 8px;
+  right: auto;
+}
 
 .container .icon {
   position: absolute;
@@ -69,7 +102,7 @@
 @media (max-width: 767.98px) {
   .container {
     width: 100%;
-    padding-left: 120px;
+    padding-left: 150px;
     padding-right: 30px;
   }
 
@@ -80,11 +113,12 @@
 
   .container.right {
     left: 0%;
+    padding-left: 150px; /* Match left padding for mobile */
   }
 
   .container.left::after,
   .container.right::after {
-    left: 82px;
+    left: 84px;
   }
 
   .container.left::before,
@@ -102,7 +136,13 @@
   .container.left .icon,
   .container.right .icon {
     right: auto;
-    left: 146px;
+    left: 80px;
+  }
+
+  .container.left .dotImage,
+  .container.right .dotImage {
+    right: auto;
+    left: 52px;
   }
 
   .container.left .content,

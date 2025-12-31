@@ -5,7 +5,7 @@ function transformSkillsRow(row) {
     id: row.id,
     type: row.type,
     skill: row.skill,
-    imageUrl: `/img/${row.image_url}`, // Transform image_path to imagePath and add /img/ prefix
+    imageUrl: row.image_url ? `/img/${row.image_url}` : null, // Transform image_path to imagePath and add /img/ prefix
     createdAt: row.created_at,
     updatedAt: row.updated_at,
     subtype: row.subtype,

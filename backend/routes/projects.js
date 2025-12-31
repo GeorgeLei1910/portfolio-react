@@ -7,7 +7,7 @@ function transformProjectRow(row) {
     title: row.title,
     description: row.description,
     embeddable: row.embeddable || null,
-    imageUrl: `/img/${row.image_url}`, // Transform image_path to imagePath and add /img/ prefix
+    imageUrl: row.image_url ? `/img/${row.image_url}` : null, 
     url: row.link,
     createdAt: row.created_at,
     updatedAt: row.updated_at
@@ -19,7 +19,7 @@ function transformMiniSkillsRow(row) {
     projectId: row.project_id,
     skillsId: row.skills_id,
     type: row.skill,
-    imageUrl: `/img/${row.image_url}`
+    imageUrl: row.image_url ? `/img/${row.image_url}` : null
   }
 }
 

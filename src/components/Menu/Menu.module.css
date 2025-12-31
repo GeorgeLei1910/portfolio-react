@@ -1,6 +1,6 @@
 .menu{
 h1{
-    font-size: 96px;
+	font-size: clamp(2.5rem, 20vw, 5rem);
     text-align: center;
     color: #B3B3B3;
 }

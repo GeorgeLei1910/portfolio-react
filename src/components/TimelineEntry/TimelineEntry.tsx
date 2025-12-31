@@ -23,6 +23,13 @@ const TimelineEntry: FC<TimelineEntryProps> = ({ entry, position }) => (
     className={`${styles.container} ${styles[position!]}`}
     data-testid="TimelineEntry"
   >
+    {entry.imageUrl && (
+      <div className={styles.dotImage}>
+      <img 
+        src={entry.imageUrl} 
+        alt={entry.title}
+      /></div>
+    )}
     <h2 className="date">{entry.title}</h2>
     <div className="content">
       <h3>{entry.date ? formatDate(entry.date) : null}</h3>

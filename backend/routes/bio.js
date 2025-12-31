@@ -5,7 +5,7 @@ function transformBioRow(row) {
     id: row.id,
     type: row.type,
     blurb: row.blurb,
-    imagePath: `/img/${row.image_path}`, // Transform image_path to imagePath and add /img/ prefix
+    imagePath: row.image_path ? `/img/${row.image_path}` : null, // Transform image_path to imagePath and add /img/ prefix
     createdAt: row.created_at,
     updatedAt: row.updated_at
   };
