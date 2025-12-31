@@ -14,6 +14,7 @@ export interface Timeline {
   type: string;
   date: Date;
   title: string;
+  company: string;
   description: string;
   imageUrl: string;
   skills: MiniSkills[];

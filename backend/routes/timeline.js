@@ -7,6 +7,7 @@ function transformTimelineRow(row) {
     date: row.date,
     title: row.title,
     description: row.description,
+    company: row.company,
     imageUrl: row.image_url ? `/img/${row.image_url}` : null,
     createdAt: row.created_at,
     updatedAt: row.updated_at

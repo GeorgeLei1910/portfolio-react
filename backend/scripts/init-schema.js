@@ -34,6 +34,7 @@ async function initDatabase() {
         type TEXT NOT NULL,
         date DATE NOT NULL,
         title TEXT NOT NULL,
+        company TEXT,
         description TEXT,
         image_url TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,

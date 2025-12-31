@@ -2,6 +2,8 @@
 /* Body */
 *{
 	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+	--programmer: #468f4e;
+	--musician: #C677F1;
 }
 
 :root{
@@ -11,7 +13,7 @@
 }
 
 .programmer {
-	--module-bg: #468f4e;
+	--module-bg: var(--programmer);
 
 		button {
 		background-color: #FFFFFF;
@@ -25,7 +27,7 @@
 }
 
 .musician{
-	--module-bg: #d29ef0;
+	--module-bg: var(--musician);
 
 	button {
 		background-color: #FFFFFF;

@@ -10,6 +10,7 @@ const entry: Timeline = {
   date: new Date(),
   createdAt: new Date(),
   skills: [],
+  company: " ",
   description: 'Test description',
   title: 'Test Title',
   imageUrl: 'https://example.com',

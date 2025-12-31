@@ -32,7 +32,8 @@ const TimelineEntry: FC<TimelineEntryProps> = ({ entry, position }) => (
     )}
     <h2 className="date">{entry.title}</h2>
     <div className="content">
-      <h3>{entry.date ? formatDate(entry.date) : null}</h3>
+      <h3>{entry.company}</h3>
+      <h4>{entry.date ? formatDate(entry.date) : null}</h4>
       <p>{entry.description}</p>
       {entry.skills && entry.skills.length > 0 && (
         <MiniSkillsEntry items={entry.skills} />

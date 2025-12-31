@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import styles from "./Homepage.module.css";
-import Footer from "../Footer/Footer";
 
 interface HomepageProps {}
 

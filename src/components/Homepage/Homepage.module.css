@@ -84,22 +84,22 @@ footer p {
 }
 
 .green:hover {
-	background-color: #468f4e;
+	background-color: var(--programmer);
 	color: #FFFFFF;
 }
 .purple:hover {
-	background-color: #d29ef0;
+	background-color: var(--musician);
 	color: #FFFFFF;
 }	
 
 .green {
 	background-color: #FFFFFF;
-	color: #468f4e;
+	color: var(--programmer);
 	transition: all 0.4s linear;
 }
 .purple {
 	background-color: #FFFFFF;
-	color: #d29ef0;
+	color: var(--musician);
 	transition: all 0.4s linear;
 }	
 
