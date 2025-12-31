@@ -14,6 +14,9 @@ RUN apt-get update && apt-get install -y \
 # Copy package files
 COPY backend/package*.json ./
 
+# Clean install - this ensures no pre-built binaries are used
+RUN rm -rf node_modules package-lock.json 2>/dev/null || true
+
 # Install all dependencies (including dev for build tools if needed)
 RUN npm install
 
