@@ -4,7 +4,7 @@ function transformTimelineRow(row) {
   return {
     id: row.id,
     type: row.type,
-    year: row.year,
+    date: row.date,
     title: row.title,
     description: row.description,
     imageUrl: `/img/${row.image_url}`,
@@ -23,9 +23,13 @@ function transformMiniSkillsRow(row) {
 }
 
 const getTimeline = async (type) => {
+
+  const typePattern = `%${type}%`;
+
+
     const result = await pool.query(
-      'SELECT * FROM timeline WHERE type = $1 ORDER BY year ASC',
-      [type]
+      'SELECT * FROM timeline WHERE type like ? ORDER BY date ASC',
+      [typePattern]
     );
 
     const transformedRows = result.rows.map(transformTimelineRow);
@@ -33,8 +37,8 @@ const getTimeline = async (type) => {
     const skillsResult = await pool.query(
     "SELECT te.id as \"timeline_id\", s.id as \"skills_id\", s.skill, s.image_url "
     + "FROM skills s, timeline te, timeline_skills ts "
-    + "WHERE te.type = $1 and ts.skills_id = s.id and te.id = ts.timeline_id ORDER BY year ASC",
-      [type]
+    + "WHERE te.type LIKE ? and ts.skills_id = s.id and te.id = ts.timeline_id ORDER BY te.date ASC",
+      [typePattern]
     );
 
     const transformedSkillsRows = skillsResult.rows.map(transformMiniSkillsRow)

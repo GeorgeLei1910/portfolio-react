@@ -11,6 +11,7 @@ describe('<PortfolioEntry />', () => {
       type: '',
       year: '',
       title: '',
+      embeddable: null,
       description: '',
       imageUrl: '',
       skills: [],

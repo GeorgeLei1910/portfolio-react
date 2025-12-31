@@ -9,7 +9,12 @@ interface PortfolioEntryProps {
 
 const PortfolioEntry: FC<PortfolioEntryProps> = ({ project }) => (
   <div className={styles.PortfolioEntry} data-testid="PortfolioEntry">
-    <a href={project.url}><img src={project.imageUrl} alt="" className="cards" /></a>
+    {project.embeddable ? 
+      (<div 
+        className={styles.embedded}
+        dangerouslySetInnerHTML={{ __html: project.embeddable }}
+      />)
+    : (<a href={project.url}><img src={project.imageUrl} alt="" className="cards" /></a>)}
     <h4>{project.title}</h4>
     <p className="text_column">{project.description}</p>
     {project.skills && project.skills.length > 0 && <div className={styles.skills}><MiniSkillsEntry items={project.skills}/></div>}

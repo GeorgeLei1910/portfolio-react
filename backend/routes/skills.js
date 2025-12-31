@@ -14,7 +14,10 @@ function transformSkillsRow(row) {
 }
 
 const getSkills = async (type) => {
-  const skills = await pool.query('SELECT * FROM skills WHERE type = $1', [type]);
+
+  const typePattern = `%${type}%`;
+
+  const skills = await pool.query('SELECT * FROM skills WHERE type like ?', [typePattern]);
   
   if (skills.rows.length === 0) {
           throw new Error('Skills not found');

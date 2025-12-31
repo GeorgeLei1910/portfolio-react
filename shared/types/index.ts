@@ -12,7 +12,7 @@ export interface Bio {
 export interface Timeline {
   id: number;
   type: string;
-  year: string;
+  date: Date;
   title: string;
   description: string;
   imageUrl: string;
@@ -39,6 +39,7 @@ export interface Project {
   title: string;
   description: string;
   imageUrl: string;
+  embeddable: string | null;
   url: any;
   skills: MiniSkills[];
   createdAt?: Date;

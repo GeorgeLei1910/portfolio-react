@@ -7,7 +7,7 @@ import TimelineEntry from './TimelineEntry';
 const entry: Timeline = {
   id: 1,
   type: 'event',
-  year: "2022",
+  date: new Date(),
   createdAt: new Date(),
   skills: [],
   description: 'Test description',

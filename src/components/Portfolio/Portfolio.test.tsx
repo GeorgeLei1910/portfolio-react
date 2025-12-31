@@ -11,6 +11,7 @@ const pf : Project = {
   title: '',
   description: '',
   imageUrl: '',
+  embeddable: null,
   skills: [],
   url: undefined,
   createdAt: undefined,

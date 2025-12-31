@@ -32,7 +32,7 @@ async function initDatabase() {
       CREATE TABLE IF NOT EXISTS timeline (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         type TEXT NOT NULL,
-        year TEXT NOT NULL,
+        date DATE NOT NULL,
         title TEXT NOT NULL,
         description TEXT,
         image_url TEXT,
@@ -63,6 +63,7 @@ async function initDatabase() {
         title TEXT NOT NULL,
         description TEXT NOT NULL,
         image_url TEXT,
+        embeddable TEXT,
         link TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
