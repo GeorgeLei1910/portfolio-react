@@ -2,7 +2,7 @@ services:
   portfolio-app:
     build:
       context: .
-      dockerfile: Dockerfile.combined
+      dockerfile: Dockerfile.production
     user: root
     privileged: true
     ports:
