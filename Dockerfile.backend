@@ -24,7 +24,7 @@ RUN npm install
 RUN npm rebuild better-sqlite3 --build-from-source
 
 # Copy backend source code
-COPY backend/ .
+COPY backend/ ./
 
 # Expose port
 EXPOSE 5000

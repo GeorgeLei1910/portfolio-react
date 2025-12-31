@@ -1,6 +1,6 @@
 import type { Bio, Timeline, Skills, Project, OccupationData } from '../../shared/types';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = process.env.REACT_APP_API_URL || '/api';
 
 // Re-export types for convenience
 export type { Bio, Timeline, Skills, Project };

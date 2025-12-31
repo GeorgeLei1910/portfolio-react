@@ -1,0 +1,47 @@
+FROM node:18-slim
+
+WORKDIR /app
+
+# Install build dependencies
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    sqlite3 \
+    libsqlite3-dev \
+    nginx \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install PM2 globally
+RUN npm install -g pm2
+
+# Install frontend dependencies and build
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Install backend dependencies
+COPY backend/package*.json ./backend/
+WORKDIR /app/backend
+RUN npm install
+RUN npm rebuild better-sqlite3 --build-from-source
+COPY backend/ ./
+
+# Go back to root
+WORKDIR /app
+
+# Copy nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Create PM2 ecosystem file for both services
+COPY ecosystem.config.js ./
+
+# Create logs directory
+RUN mkdir -p logs
+
+# Expose ports
+EXPOSE 80
+
+# Start both services with PM2
+CMD ["pm2-runtime", "start", "ecosystem.config.js"]
