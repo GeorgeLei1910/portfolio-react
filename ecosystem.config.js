@@ -2,7 +2,7 @@ module.exports = {
     apps: [
       {
         name: 'portfolio-backend',
-        script: './backend/server.js',
+        script: './server.js',
         cwd: './backend',
         instances: 1,
         exec_mode: 'fork',
