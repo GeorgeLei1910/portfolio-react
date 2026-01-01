@@ -34,6 +34,9 @@ WORKDIR /app
 # Copy nginx config
 COPY nginx.conf /etc/nginx/nginx.conf
 
+# Copy built React app to nginx html directory
+RUN cp -r /app/build/* /usr/share/nginx/html/
+
 # Create PM2 ecosystem file for both services
 COPY ecosystem.config.js ./
 
