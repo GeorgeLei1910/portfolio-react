@@ -2,8 +2,7 @@ module.exports = {
     apps: [
       {
         name: 'portfolio-backend',
-        script: './server.js',
-        cwd: '/app/backend',
+        script: '/app/backend/server.js',
         instances: 1,
         exec_mode: 'fork',
         env: {
@@ -16,7 +15,7 @@ module.exports = {
         out_file: '/app/logs/backend-out.log',
         log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
         autorestart: true,
-        max_restarts: 10,
+        max_restarts: 3,
         min_uptime: '10s',
         max_memory_restart: '1G'
       },
