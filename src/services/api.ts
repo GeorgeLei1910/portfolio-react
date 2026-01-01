@@ -7,7 +7,7 @@ export type { Bio, Timeline, Skills, Project };
 
 // Get all from page API
 export const fetchData = async (type: string): Promise<OccupationData> => {
-  const response = await fetch(`${API_URL}/api/${type}`);
+  const response = await fetch(`${API_URL}/${type}`);
   if (!response.ok) {
     throw new Error(response.statusText);
   }
