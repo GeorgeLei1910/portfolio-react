@@ -35,7 +35,7 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=development
-      - REACT_APP_API_URL=http://localhost:5000
+      - REACT_APP_API_URL=http://localhost:5000/api
       - CHOKIDAR_USEPOLLING=true
       - WATCHPACK_POLLING=true
     depends_on:

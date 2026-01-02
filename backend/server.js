@@ -65,7 +65,7 @@ app.get('/api/test-db', async (req, res) => {
   }
 });
 
-app.listen(PORT, '127.0.0.1', () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT} (localhost only)`);
 });
 
