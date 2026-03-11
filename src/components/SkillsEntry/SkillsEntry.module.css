@@ -10,17 +10,17 @@
     margin: 10px;
 
     h3{
-        display: none;
+        display: block;
         position: absolute;
         text-align: center;
         width: 75px;
-        top: calc(50% - 10px);
+        top: calc(100% + 6px);
         left: calc(50% - 10px);
         transform: translate(-50%, -50%);
         margin: inherit;
         color: #000;
         background-color: #FFFFFF80;
-        font-size: 16px;
+        font-size: 12px;
     }
 
     img{
@@ -31,11 +31,6 @@
     }
 }
 
-.SkillsEntry:hover h3 {
-    display: block;
-}
-
 .SkillsEntry:hover img {
-    opacity: 30%;
     transform: scale(1.1);
 }

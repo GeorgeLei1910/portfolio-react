@@ -29,7 +29,7 @@ const getTimeline = async (type) => {
 
 
     const result = await pool.query(
-      'SELECT * FROM timeline WHERE type like ? ORDER BY date ASC',
+      'SELECT * FROM timeline WHERE type like ? ORDER BY date DESC',
       [typePattern]
     );
 
@@ -38,7 +38,7 @@ const getTimeline = async (type) => {
     const skillsResult = await pool.query(
     "SELECT te.id as \"timeline_id\", s.id as \"skills_id\", s.skill, s.image_url "
     + "FROM skills s, timeline te, timeline_skills ts "
-    + "WHERE te.type LIKE ? and ts.skills_id = s.id and te.id = ts.timeline_id ORDER BY te.date ASC",
+    + "WHERE te.type LIKE ? and ts.skills_id = s.id and te.id = ts.timeline_id ORDER BY te.date DESC",
       [typePattern]
     );
 

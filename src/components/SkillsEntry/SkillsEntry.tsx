@@ -10,8 +10,8 @@ const thisYear = new Date().getFullYear();
 
 const SkillsEntry: FC<SkillsEntryProps> = ({ skill }) => (
   <div className={styles.SkillsEntry} data-testid="SkillsEntry">
-    <h3 className={styles.skillText}>{skill.skill}</h3>
     <img src={skill.imageUrl} alt={skill.skill} />
+    <h3 className={styles.skillText}>{skill.skill}</h3>
   </div>
 );
 

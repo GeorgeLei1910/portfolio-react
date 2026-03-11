@@ -11,6 +11,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/programmer" element={<Page occupation='programmer'/>} />
         <Route path="/musician" element={<Page occupation='musician'/>} />
+        <Route path="*" element={<Homepage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
