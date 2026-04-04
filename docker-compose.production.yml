@@ -1,8 +1,10 @@
 services:
   portfolio-app:
     build:
-      context: .
+      context: ./src/frontend/
       dockerfile: Dockerfile.production
+      args:
+        REACT_APP_API_URL: /api
     user: root
     privileged: true
     ports:

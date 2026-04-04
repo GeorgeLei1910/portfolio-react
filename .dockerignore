@@ -1,6 +1,7 @@
-node_modules
-backend/node_modules
-sqlite3_data/
-npm-debug.log
+**/node_modules
+**/build
 .git
 .gitignore
+*.md
+logs
+sqlite3_data

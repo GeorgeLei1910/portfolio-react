@@ -3,7 +3,7 @@ services:
   backend:
     build:
       context: ./src/backend
-      dockerfile: ./src/backend/Dockerfile.backend
+      dockerfile: Dockerfile.backend
     user: root
     privileged: true
     container_name: portfolio-backend
@@ -21,7 +21,9 @@ services:
   portfolio-react:
     build:
       context: ./src/frontend
-      dockerfile: ./src/frontend/Dockerfile
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_URL: /api
     user: root
     privileged: true
     ports:
@@ -30,7 +32,6 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=production
-      - REACT_APP_API_URL=http://backend:5000
     depends_on:
       - backend
     networks:

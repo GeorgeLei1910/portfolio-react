@@ -3,7 +3,7 @@ services:
   backend:
     build:
       context: ./src/backend
-      dockerfile: ./src/backend/Dockerfile.backend
+      dockerfile: Dockerfile.backend
     user: root
     privileged: true
     ports:
@@ -18,7 +18,7 @@ services:
       - portfolio-network
     # Mount backend source for hot reloading (if you want backend hot reloading too)
     volumes:
-      - ./backend:/app
+      - ./src/backend:/app
       - ./sqlite3_data:/app/sqlite3_data
       - /app/node_modules
 
@@ -26,7 +26,7 @@ services:
   portfolio-react:
     build:
       context: ./src/frontend
-      dockerfile: ./src/frontend/Dockerfile.dev
+      dockerfile: Dockerfile.dev
     user: root
     privileged: true
     ports:
@@ -42,9 +42,9 @@ services:
       - backend
     networks:
       - portfolio-network
-    # Mount source code for hot reloading
+    # Mount frontend app only (package.json + src + public live here)
     volumes:
-      - .:/app
+      - ./src/frontend:/app
       - /app/node_modules
       - /app/build
 

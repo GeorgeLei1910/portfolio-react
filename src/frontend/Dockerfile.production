@@ -1,8 +1,6 @@
+# Single image: nginx (PM2) + Node API — build from repository root (see docker-compose.production.yml)
 FROM node:18-slim
 
-WORKDIR /app
-
-# Install build dependencies
 RUN apt-get update && apt-get install -y \
     python3 \
     make \
@@ -12,39 +10,34 @@ RUN apt-get update && apt-get install -y \
     nginx \
     && rm -rf /var/lib/apt/lists/*
 
-# Install PM2 globally
 RUN npm install -g pm2
 
-# Install frontend dependencies and build
-COPY package*.json ./
+# Frontend (CRA expects package.json + public/ + src/ under /app/frontend)
+WORKDIR /app/frontend
+COPY src/frontend/package*.json ./
 RUN npm ci
-COPY . .
+COPY src/frontend/ ./
+COPY public/ ./public/
+
+ARG REACT_APP_API_URL=/api
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
 RUN npm run build
 
-# Install backend dependencies
-COPY backend/package*.json ./backend/
+# Backend
 WORKDIR /app/backend
+COPY src/backend/package*.json ./
 RUN npm install
 RUN npm rebuild better-sqlite3 --build-from-source
-COPY backend/ ./
+COPY src/backend/ ./
 
-# Go back to root
 WORKDIR /app
+RUN cp -r /app/frontend/build/* /usr/share/nginx/html/
 
-# Copy nginx config
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY src/frontend/nginx.monolith.conf /etc/nginx/nginx.conf
+COPY src/frontend/ecosystem.config.js ./
 
-# Copy built React app to nginx html directory
-RUN cp -r /app/build/* /usr/share/nginx/html/
-
-# Create PM2 ecosystem file for both services
-COPY ecosystem.config.js ./
-
-# Create logs directory
 RUN mkdir -p logs
 
-# Expose ports
 EXPOSE 80
 
-# Start both services with PM2
 CMD ["pm2-runtime", "start", "ecosystem.config.js"]
