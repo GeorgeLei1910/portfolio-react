@@ -2,8 +2,8 @@ services:
   # Backend API
   backend:
     build:
-      context: .
-      dockerfile: Dockerfile.backend
+      context: ./src/backend
+      dockerfile: ./src/backend/Dockerfile.backend
     user: root
     privileged: true
     container_name: portfolio-backend
@@ -20,8 +20,8 @@ services:
   # Frontend React App
   portfolio-react:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./src/frontend
+      dockerfile: ./src/frontend/Dockerfile
     user: root
     privileged: true
     ports:

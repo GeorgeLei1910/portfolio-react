@@ -2,8 +2,8 @@ services:
   # Backend API (Development mode)
   backend:
     build:
-      context: .
-      dockerfile: Dockerfile.backend
+      context: ./src/backend
+      dockerfile: ./src/backend/Dockerfile.backend
     user: root
     privileged: true
     ports:
@@ -25,8 +25,8 @@ services:
   # Frontend React App (Development mode with hot reloading)
   portfolio-react:
     build:
-      context: .
-      dockerfile: Dockerfile.dev
+      context: ./src/frontend
+      dockerfile: ./src/frontend/Dockerfile.dev
     user: root
     privileged: true
     ports:
