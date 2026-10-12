@@ -2,6 +2,7 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "portfolio-react",
 	"compatibility_date": "2026-10-06",
+	"main": "src/worker.js",
 	"observability": {
 		"enabled": true
 	},
