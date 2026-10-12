@@ -35,7 +35,7 @@ const ReturnToTop: FC<ReturnToTopProps> = ({type}) => {
           onClick={scrollToTop}
           aria-label="Return to top"
         >
-          <img src='/img/up-svgrepo-com.svg'/>
+          <img src='/img/up-svgrepo-com.svg' alt="Return to top" />
         </button>
       )}
     </>

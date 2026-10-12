@@ -6,8 +6,6 @@ interface SkillsEntryProps {
   skill: Skills;
 }
 
-const thisYear = new Date().getFullYear();
-
 const SkillsEntry: FC<SkillsEntryProps> = ({ skill }) => (
   <div className={styles.SkillsEntry} data-testid="SkillsEntry">
     <img src={skill.imageUrl} alt={skill.skill} />

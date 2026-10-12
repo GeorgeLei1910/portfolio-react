@@ -36,7 +36,7 @@ const Page: FC<PageProps> = ({ occupation }) => {
       }
     };
     loadData();
-  }, []);
+  }, [occupation]);
 
   if (loading) {
     return <div data-testid={occupation}>Loading...</div>;
