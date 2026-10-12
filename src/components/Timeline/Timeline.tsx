@@ -12,8 +12,8 @@ const TimelineSection: FC<TimelineProps> = ({ data, className }) => (
   <div className={`${styles.timeline} ${className}`} id="timeline">
     <div className={styles.title}><h2>Timeline</h2></div>
     {data.map((entry, index) => {
-      const position = index % 2 == 0 ? 'left' : 'right';
-      return <TimelineEntry entry={entry} position={position} />;
+      const position = index % 2 === 0 ? 'left' : 'right';
+      return <TimelineEntry key={entry.id ?? index} entry={entry} position={position} />;
     })}
   </div>
 );

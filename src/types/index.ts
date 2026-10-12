@@ -1,4 +1,4 @@
-// Shared TypeScript interfaces for both frontend and backend
+// Shared domain types for the React app (also re-exported from src/types for repo-wide TS)
 
 export interface Bio {
   id: number;
@@ -47,13 +47,13 @@ export interface Project {
   updatedAt?: Date;
 }
 
-export interface MiniSkills{
+export interface MiniSkills {
   id: number;
   type: string;
   imageUrl: string;
 }
 
-export interface OccupationData{
+export interface OccupationData {
   bio: Bio;
   timeline: Timeline[];
   skills: Map<string, Skills[]>;

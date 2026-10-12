@@ -1,4 +1,4 @@
-import type { Bio, Timeline, Skills, Project, OccupationData } from '../../shared/types';
+import type { Bio, Timeline, Skills, Project, OccupationData } from '../types';
 
 const API_URL = process.env.REACT_APP_API_URL || '/api';
 

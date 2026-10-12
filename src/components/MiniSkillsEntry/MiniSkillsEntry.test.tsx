@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import MiniSkillsEntry from './MiniSkillsEntry';
-import { MiniSkills } from '@shared/types';
+import type { MiniSkills } from '../../types';
 
 describe('<MiniSkillsEntry />', () => {
   test('it should mount', () => {

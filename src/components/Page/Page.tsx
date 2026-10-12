@@ -7,7 +7,7 @@ import type {Bio, Project, Skills, Timeline} from '../../services/api';
 import PortfolioSection from '../Portfolio/Portfolio';
 import SkillsSection from '../Skills/Skills';
 import ReturnToTop from '../ReturnToTop/ReturnToTop';
-import { OccupationData } from '@shared/types';
+import type { OccupationData } from '../../types';
 
 
 interface PageProps {
@@ -36,7 +36,7 @@ const Page: FC<PageProps> = ({ occupation }) => {
       }
     };
     loadData();
-  }, []);
+  }, [occupation]);
 
   if (loading) {
     return <div data-testid={occupation}>Loading...</div>;

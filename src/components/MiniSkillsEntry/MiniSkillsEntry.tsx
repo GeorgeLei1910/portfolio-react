@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styles from "./MiniSkillsEntry.module.css";
-import { MiniSkills } from "@shared/types";
+import type { MiniSkills } from '../../types';
 
 interface MiniSkillsEntryProps {
   items: MiniSkills[];
