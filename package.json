@@ -19,11 +19,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npm --prefix src/frontend start",
-    "build": "npm --prefix src/frontend run build",
-    "test": "npm --prefix src/frontend test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "deploy": "npm run build && wrangler deploy",
-    "preview": "npm run build && wrangler dev"
+    "preview": "npm run build && wrangler pages dev build"
   },
   "eslintConfig": {
     "extends": [
