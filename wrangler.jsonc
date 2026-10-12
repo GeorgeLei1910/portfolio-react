@@ -15,5 +15,13 @@
 			"database_name": "portfolio-db",
 			"database_id": "b698dc21-ce61-487c-a5e7-5ebbc1b95d3e"
 		}
-	]
+	],
+	"previews": {
+		"d1_databases": [
+			{
+				"binding": "portfolio_db",
+				"database_id": "b698dc21-ce61-487c-a5e7-5ebbc1b95d3e"
+			}
+		]
+	}
 }
